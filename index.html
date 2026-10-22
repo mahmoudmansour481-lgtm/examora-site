@@ -261,7 +261,7 @@ footer a{color:#fff;font-weight:700}
           <div class="two"><div><label for="t_email" data-t="fEmail"></label><input id="t_email" type="email" autocomplete="email" dir="ltr" maxlength="120" required></div>
             <div><label for="t_phone" data-t="fTPhone"></label><input id="t_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required></div></div>
           <div class="two"><div><label for="t_cur" data-t="fCur"></label><select id="t_cur" required></select></div><div><label for="t_sub" data-t="fSub"></label><select id="t_sub" required></select></div></div>
-          <div class="two"><div><label for="t_grade" data-t="fTGrade"></label><input id="t_grade" maxlength="60"></div><div><label for="t_lang" data-t="fLang"></label><select id="t_lang"><option value="ar">العربية</option><option value="en">English</option></select></div></div>
+          <div><label for="t_lang" data-t="fLang"></label><select id="t_lang"><option value="ar">العربية</option><option value="en">English</option></select></div>
           <label for="t_note" data-t="fNote"></label><textarea id="t_note" maxlength="300"></textarea>
           <div class="hpw" aria-hidden="true"><label for="t_web">web</label><input id="t_web" tabindex="-1" autocomplete="off"></div>
           <button class="btn blue" type="submit" id="t_go" data-t="ftGo"></button>
@@ -584,7 +584,7 @@ footer a{color:#fff;font-weight:700}
     if (!$('t_sub').value) { say('t_msg', t('e_SUBJECT_REQUIRED'), 'err'); return; }
     b.disabled = true; say('t_msg', t('sending'));
     post({ action: 'teacherRequest', name: $('t_name').value, email: $('t_email').value.trim(), phone: $('t_phone').value, curriculum: $('t_cur').value, subject: $('t_sub').value,
-      grade: $('t_grade').value, lang: $('t_lang').value, note: $('t_note').value, hp: $('t_web').value, ms: Date.now() - SHOWN.t }, function (r) {
+      lang: $('t_lang').value, note: $('t_note').value, hp: $('t_web').value, ms: Date.now() - SHOWN.t }, function (r) {
       b.disabled = false;
       if (r.ok) { $('ftBody').classList.add('hide'); say('t_msg', ''); $('t_msg').appendChild(el('div', { 'class': 'done', text: t('tDone') })); return; }
       say('t_msg', errMsg(r), 'err');
