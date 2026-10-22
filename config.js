@@ -3,5 +3,5 @@
 // EXAMORA_LOGIN = where "Sign in" goes for students (your student app, e.g. https://NAME.github.io/REPO/student/).
 // EXAMORA_TEACHER = the teacher app (e.g. https://NAME.github.io/REPO/teacher/).
 var EXAMORA_EXEC = 'https://script.google.com/macros/s/AKfycby1_GqAckjEVc70G8WquGSHnBpFRQ8XhEIAyVaqHSVq32_HEjyX_L1LcaDJJjdHWTbnzg/exec';
-var EXAMORA_LOGIN = '';
-var EXAMORA_TEACHER = '';
+var EXAMORA_LOGIN = 'https://mahmoudmansour481-lgtm.github.io/examora-scanner/student/';
+var EXAMORA_TEACHER = 'https://mahmoudmansour481-lgtm.github.io/examora-scanner/teacher/';
