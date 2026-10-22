@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Examora - امتحانات ومتابعة للمدرس والطالب وولي الأمر</title>
+<meta name="description" content="Examora: امتحانات بتتصحح لوحدها، مستوى كل طالب في كل درس بالألوان، امتحان جديد كل أسبوع، ومتابعة لولي الأمر. ثانوية عامة، بكالوريا، SAT، ACT، EST، IGCSE.">
+<meta property="og:title" content="Examora">
+<meta property="og:description" content="امتحانات ومتابعة للمدرس والطالب وولي الأمر - Exams and progress for teachers, students and parents.">
+<meta name="theme-color" content="#0B2C8F">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<style>
+@font-face{font-family:Cairo;font-weight:400;font-display:swap;src:url(fonts/cairo-arabic-400-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Cairo;font-weight:700;font-display:swap;src:url(fonts/cairo-arabic-700-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Cairo;font-weight:900;font-display:swap;src:url(fonts/cairo-arabic-900-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Cairo;font-weight:400;font-display:swap;src:url(fonts/cairo-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Cairo;font-weight:700;font-display:swap;src:url(fonts/cairo-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Cairo;font-weight:900;font-display:swap;src:url(fonts/cairo-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+:root{--navy:#0B2C8F;--blue:#1769E8;--sky:#19A7FF;--ink:#0E1B3D;--mut:#55658A;--bg:#F4F7FE;--card:#fff;--line:#DCE5F8;--green:#16A34A;--amber:#D99A00;--red:#D32F2F;--r:22px;--sh:0 18px 50px rgba(11,44,143,.12)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Cairo,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--blue)}
+.wrap{max-width:1140px;margin:0 auto;padding:0 18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:999px;border:2px solid transparent;font:inherit;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.pri{background:#fff;color:var(--navy);box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.btn.blue{background:var(--blue);color:#fff;box-shadow:0 10px 24px rgba(23,105,232,.3)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn.line{background:#fff;color:var(--navy);border-color:var(--line)}
+.btn.sm{min-height:38px;padding:6px 16px;font-size:14px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+/* top bar */
+.top{position:sticky;top:0;z-index:20;background:rgba(11,44,143,.94);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:14px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900;font-size:22px;letter-spacing:.3px}
+.brand img{width:40px;height:40px;border-radius:50%;background:#fff}
+.nav{display:flex;gap:4px;margin-inline-start:auto;align-items:center}
+.nav a.lk{color:#DCE8FF;text-decoration:none;font-weight:700;font-size:15px;padding:8px 10px;border-radius:10px}
+.nav a.lk:hover{background:rgba(255,255,255,.1);color:#fff}
+.lang{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);border-radius:999px;font:inherit;font-weight:700;font-size:14px;padding:6px 14px;cursor:pointer}
+@media (max-width:860px){.nav a.lk{display:none}}
+/* hero */
+.hero{position:relative;color:#fff;background:linear-gradient(150deg,#0B2C8F 0%,#1460DD 55%,#19A7FF 100%);overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.6px,transparent 1.6px);background-size:34px 34px;pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding-top:56px;padding-bottom:72px}
+.chip{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 14px;font-weight:700;font-size:14px}
+.hero h1{font-size:clamp(32px,5.2vw,56px);line-height:1.25;margin:14px 0 12px;font-weight:900}
+.hero h1 .hl{color:#FFE066}
+.hero p.lead{font-size:clamp(17px,2vw,20px);color:#E3EDFF;margin:0 0 24px;max-width:600px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.login-l{color:#fff;font-weight:700;margin-top:14px;display:inline-block}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-weight:700;font-size:14px;color:#E3EDFF}
+.ticks span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#7CF5A0;margin-inline-end:8px;vertical-align:middle}
+.stage{position:relative;min-height:520px}
+.desk{background:#fff;border-radius:16px;box-shadow:0 30px 70px rgba(4,16,60,.45);overflow:hidden;border:1px solid rgba(255,255,255,.4)}
+.desk .bar{height:26px;background:#EEF2FB;display:flex;align-items:center;gap:6px;padding:0 10px}
+.desk .bar i{width:9px;height:9px;border-radius:50%;background:#C9D3EA}
+.stage .desk{position:absolute;inset-inline-start:0;top:30px;width:92%}
+.phone{background:#0A1A4F;border-radius:34px;padding:9px;box-shadow:0 30px 60px rgba(4,16,60,.5)}
+.phone img{border-radius:26px;background:#fff}
+.stage .phone{position:absolute;inset-inline-end:0;top:0;width:44%;max-width:250px}
+.float{position:absolute;background:#fff;color:var(--ink);border-radius:16px;padding:10px 14px;box-shadow:0 16px 40px rgba(4,16,60,.3);font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px}
+.float b{display:inline-block;width:12px;height:12px;border-radius:50%}
+.f1{inset-inline-start:4%;bottom:44px}.f2{inset-inline-start:30%;bottom:-6px}
+@media (max-width:920px){.hero .wrap{grid-template-columns:1fr;padding-top:36px}.stage{min-height:0;height:min(98vw,500px)}}
+/* sections */
+section{padding:72px 0}
+.sec-h{text-align:center;max-width:760px;margin:0 auto 34px}
+.eyebrow{color:var(--blue);font-weight:900;font-size:14px;letter-spacing:.4px}
+.sec-h h2{font-size:clamp(26px,3.6vw,38px);line-height:1.3;margin:6px 0 8px;font-weight:900;color:var(--navy)}
+.sec-h p{color:var(--mut);margin:0;font-size:17px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:960px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.grid3{grid-template-columns:1fr}}
+@media (max-width:520px){.grid4{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:0 6px 20px rgba(11,44,143,.05)}
+.card h3{margin:10px 0 6px;font-size:21px;color:var(--navy);font-weight:900;line-height:1.35}
+.card p{margin:0;color:var(--mut)}
+.ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--blue),var(--sky));color:#fff}
+.ic svg{width:28px;height:28px}
+.who .card{position:relative;overflow:hidden}
+.who .card:after{content:"";position:absolute;inset-inline-end:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:rgba(25,167,255,.08)}
+/* how */
+.steps{counter-reset:s}
+.step{position:relative;padding-top:58px}
+.step:before{counter-increment:s;content:counter(s);position:absolute;top:20px;inset-inline-start:24px;width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:20px}
+.levels{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.lv{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14px;border-radius:999px;padding:3px 12px;color:#fff}
+/* showcase */
+.show{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:22px}
+.tab{font:inherit;font-weight:700;font-size:15px;border:1.5px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:8px 18px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.view{display:grid;grid-template-columns:1fr 1.25fr;gap:34px;align-items:center}
+.view .txt h3{font-size:clamp(22px,2.8vw,30px);color:var(--navy);margin:0 0 8px;line-height:1.35;font-weight:900}
+.view .txt p{color:var(--mut);font-size:17px;margin:0 0 12px}
+.view .txt ul{margin:0;padding-inline-start:20px;color:var(--ink)}
+.view .pic{display:flex;justify-content:center}
+.view .pic .phone{width:min(300px,78vw)}
+.view .pic .desk{width:100%}
+.demo-note{font-size:13px;color:var(--mut);text-align:center;margin-top:12px}
+@media (max-width:860px){.view{grid-template-columns:1fr}.view .pic{order:-1}}
+/* features */
+.feat .card{padding:20px}
+.feat .card h3{font-size:18px}
+.feat .card p{font-size:15px}
+.band{background:linear-gradient(150deg,#0B2C8F,#1769E8);color:#fff;border-radius:28px;padding:34px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;box-shadow:var(--sh)}
+.band h2{margin:0 0 6px;font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:900}
+.band p{margin:0;color:#DCE8FF}
+.band .big{width:78px;height:78px;border-radius:24px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center}
+.band .big svg{width:42px;height:42px}
+@media (max-width:760px){.band{grid-template-columns:1fr;text-align:center}.band .big{margin:0 auto}}
+.fun{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:760px){.fun{grid-template-columns:1fr}}
+/* forms */
+.forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+@media (max-width:900px){.forms{grid-template-columns:1fr}}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--sh);scroll-margin-top:84px}
+.fcard h3{margin:0 0 4px;font-size:24px;color:var(--navy);font-weight:900}
+.fcard .sub{color:var(--mut);margin:0 0 16px}
+.tag{display:inline-block;font-weight:900;font-size:13px;border-radius:999px;padding:2px 12px;margin-bottom:8px}
+.tag.s{background:#E6F6EC;color:#11753A}.tag.t{background:#E8F0FF;color:var(--blue)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:11px 14px;border:1.5px solid var(--line);border-radius:14px;background:#FBFCFF;color:var(--ink)}
+textarea{min-height:76px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media (max-width:480px){.two{grid-template-columns:1fr}}
+.hpw{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;overflow:hidden}
+.msg{margin-top:12px;font-weight:700;min-height:1px}
+.msg.err{color:var(--red)}.msg.ok{color:var(--green)}
+.done{background:#E6F6EC;border:1px solid #BFE5CC;border-radius:18px;padding:16px;color:#11573A;font-weight:700}
+.fcard .btn{width:100%;margin-top:18px}
+.mini{font-size:13px;color:var(--mut);margin-top:10px}
+/* faq */
+details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:4px 20px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;font-size:17px;padding:12px 0;color:var(--navy);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";float:inline-end;font-weight:900;color:var(--blue)}
+details[open] summary:after{content:"-"}
+details p{margin:0 0 14px;color:var(--mut)}
+footer{background:#0A1F63;color:#C9D7F5;padding:34px 0;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center}
+footer a{color:#fff;font-weight:700}
+.sp{flex:1}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/logo.png" alt="" width="40" height="40"><span>Examora</span></a>
+    <nav class="nav" aria-label="Examora">
+      <a class="lk" href="#how" data-t="nHow"></a><a class="lk" href="#see" data-t="nSee"></a><a class="lk" href="#teachers" data-t="nTeachers"></a><a class="lk" href="#faq" data-t="nFaq"></a>
+      <a class="btn sm pri" id="loginTop" data-t="login"></a>
+      <button class="lang" id="langBtn" type="button"></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="chip" data-t="heroChip"></span>
+      <h1><span data-t="heroH1a"></span> <span class="hl" data-t="heroH1b"></span></h1>
+      <p class="lead" data-t="heroLead"></p>
+      <div class="cta"><a class="btn pri" href="#start-student" data-t="ctaStudent"></a><a class="btn ghost" href="#start-teacher" data-t="ctaTeacher"></a></div>
+      <a class="login-l" id="loginHero" data-t="haveAccount"></a>
+      <div class="ticks"><span data-t="tick1"></span><span data-t="tick2"></span><span data-t="tick3"></span></div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="desk"><div class="bar"><i></i><i></i><i></i></div><img id="heroDesk" alt="" width="1280" height="780"></div>
+      <div class="phone"><img id="heroPhone" alt="" width="390" height="844"></div>
+      <div class="float f1"><b style="background:var(--green)"></b><span data-t="fl1"></span></div>
+      <div class="float f2"><b style="background:var(--red)"></b><span data-t="fl2"></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="who" id="who">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="whoEye"></div><h2 data-t="whoH"></h2><p data-t="whoP"></p></div>
+    <div class="grid3">
+      <div class="card"><div class="ic" data-ic="cap"></div><h3 data-t="w1h"></h3><p data-t="w1p"></p></div>
+      <div class="card"><div class="ic" data-ic="family"></div><h3 data-t="w2h"></h3><p data-t="w2p"></p></div>
+      <div class="card"><div class="ic" data-ic="board"></div><h3 data-t="w3h"></h3><p data-t="w3p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="howEye"></div><h2 data-t="howH"></h2><p data-t="howP"></p></div>
+    <div class="grid3 steps">
+      <div class="card step"><h3 data-t="s1h"></h3><p data-t="s1p"></p></div>
+      <div class="card step"><h3 data-t="s2h"></h3><p data-t="s2p"></p><div class="levels"><span class="lv" style="background:var(--green)" data-t="lvG"></span><span class="lv" style="background:var(--amber)" data-t="lvY"></span><span class="lv" style="background:var(--red)" data-t="lvR"></span></div></div>
+      <div class="card step"><h3 data-t="s3h"></h3><p data-t="s3p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="show" id="see">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="seeEye"></div><h2 data-t="seeH"></h2><p data-t="seeP"></p></div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="view">
+      <div class="txt"><h3 id="vH"></h3><p id="vP"></p><ul id="vL"></ul></div>
+      <div class="pic" id="vPic"></div>
+    </div>
+    <p class="demo-note" data-t="demoNote"></p>
+  </div>
+</section>
+
+<section class="feat" id="teachers">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="ftEye"></div><h2 data-t="ftH"></h2><p data-t="ftP"></p></div>
+    <div class="grid4" id="feats"></div>
+  </div>
+</section>
+
+<section id="students" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="stEye"></div><h2 data-t="stH"></h2><p data-t="stP"></p></div>
+    <div class="fun" id="funs"></div>
+  </div>
+</section>
+
+<section id="support" style="padding-top:0">
+  <div class="wrap">
+    <div class="band"><div class="big" data-ic="support"></div><div><h2 data-t="supH"></h2><p data-t="supP"></p></div><a class="btn pri" href="#start-teacher" data-t="supBtn"></a></div>
+  </div>
+</section>
+
+<section id="start" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h"><div class="eyebrow" data-t="goEye"></div><h2 data-t="goH"></h2><p data-t="goP"></p></div>
+    <div class="forms">
+      <form class="fcard" id="start-student" novalidate>
+        <span class="tag s" data-t="fsTag"></span>
+        <h3 data-t="fsH"></h3><p class="sub" data-t="fsP"></p>
+        <div id="fsBody">
+          <label for="s_name" data-t="fName"></label><input id="s_name" autocomplete="name" maxlength="100" required>
+          <div class="two"><div><label for="s_phone" data-t="fPhone"></label><input id="s_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required></div>
+            <div><label for="s_parent" data-t="fParent"></label><input id="s_parent" inputmode="tel" dir="ltr" maxlength="20" required></div></div>
+          <div class="two"><div><label for="s_cur" data-t="fCur"></label><select id="s_cur" required></select></div><div><label for="s_grade" data-t="fGrade"></label><select id="s_grade" required></select></div></div>
+          <div class="hpw" aria-hidden="true"><label for="s_web">web</label><input id="s_web" tabindex="-1" autocomplete="off"></div>
+          <button class="btn blue" type="submit" id="s_go" data-t="fsGo"></button>
+          <p class="mini" data-t="fsMini"></p>
+        </div>
+        <div class="msg" id="s_msg" role="status" aria-live="polite"></div>
+      </form>
+      <form class="fcard" id="start-teacher" novalidate>
+        <span class="tag t" data-t="ftTag"></span>
+        <h3 data-t="ftFH"></h3><p class="sub" data-t="ftFP"></p>
+        <div id="ftBody">
+          <label for="t_name" data-t="fTName"></label><input id="t_name" autocomplete="name" maxlength="100" required>
+          <div class="two"><div><label for="t_email" data-t="fEmail"></label><input id="t_email" type="email" autocomplete="email" dir="ltr" maxlength="120" required></div>
+            <div><label for="t_phone" data-t="fTPhone"></label><input id="t_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required></div></div>
+          <div class="two"><div><label for="t_cur" data-t="fCur"></label><select id="t_cur" required></select></div><div><label for="t_sub" data-t="fSub"></label><select id="t_sub" required></select></div></div>
+          <div class="two"><div><label for="t_grade" data-t="fTGrade"></label><input id="t_grade" maxlength="60"></div><div><label for="t_lang" data-t="fLang"></label><select id="t_lang"><option value="ar">العربية</option><option value="en">English</option></select></div></div>
+          <label for="t_note" data-t="fNote"></label><textarea id="t_note" maxlength="300"></textarea>
+          <div class="hpw" aria-hidden="true"><label for="t_web">web</label><input id="t_web" tabindex="-1" autocomplete="off"></div>
+          <button class="btn blue" type="submit" id="t_go" data-t="ftGo"></button>
+          <p class="mini" data-t="ftMini"></p>
+        </div>
+        <div class="msg" id="t_msg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap" style="max-width:860px">
+    <div class="sec-h"><div class="eyebrow" data-t="faqEye"></div><h2 data-t="faqH"></h2></div>
+    <div id="faqs"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" style="font-size:18px"><img src="img/logo.png" alt="" width="32" height="32" style="width:32px;height:32px"><span>Examora</span></a>
+    <span class="sp"></span>
+    <a id="waFoot" class="hide" target="_blank" rel="noopener" data-t="waFoot"></a>
+    <a id="loginFoot" data-t="login"></a>
+    <a id="teacherFoot" data-t="teacherLogin"></a>
+    <span id="copy"></span>
+  </div>
+</footer>
+<noscript><p style="text-align:center;padding:20px">Examora needs JavaScript. / المنصة محتاجة JavaScript.</p></noscript>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  'use strict';
+  var T = {
+    ar: {
+      title: 'Examora - امتحانات ومتابعة للمدرس والطالب وولي الأمر',
+      nHow: 'إزاي بيشتغل', nSee: 'شوف المنصة', nTeachers: 'للمدرسين', nFaq: 'أسئلة', login: 'تسجيل الدخول', teacherLogin: 'دخول المدرسين', otherLang: 'English',
+      heroChip: 'منصة امتحانات ومتابعة', heroH1a: 'اعرف مستوى كل طالب في كل درس', heroH1b: 'من أول امتحان',
+      heroLead: 'امتحانات بتتصحح لوحدها، مستوى كل مهارة بالألوان، امتحان جديد كل أسبوع، ومتابعة لولي الأمر. كل ده في مكان واحد للمدرس والطالب.',
+      ctaStudent: 'أنا طالب: امتحان تحديد مستوى مجاني', ctaTeacher: 'أنا مدرس: جرّب المنصة', haveAccount: 'عندك حساب؟ سجّل دخول',
+      tick1: 'عربي وإنجليزي', tick2: 'موبايل وتابلت وكمبيوتر', tick3: 'إشعارات على الموبايل',
+      fl1: 'متمكن في 6 دروس', fl2: 'محتاج تدريب في قانون كيرشوف',
+      whoEye: 'لمين Examora؟', whoH: 'كل واحد بياخد اللي محتاجه', whoP: 'الطالب يعرف هو فين، وولي الأمر يطمن، والمدرس يوفر وقته.',
+      w1h: 'للطالب', w1p: 'تعرف إنت فين بالظبط في كل درس، وتذاكر اللي ناقصك بس بدل ما تعيد الباب كله. وامتحان جديد كل أسبوع يقيس تقدمك.',
+      w2h: 'لولي الأمر', w2p: 'رابط واحد يوريك مستوى ابنك وحضوره ودرجاته، وتقرير أسبوعي على الواتساب. من غير ما تسأل وتخمن.',
+      w3h: 'للمدرس', w3p: 'امتحانات وبنك أسئلة وتصحيح وحضور وفلوس ورسايل في مكان واحد. والمنصة بتطلعلك نقط ضعف كل طالب وكل مجموعة.',
+      howEye: 'للطالب في 3 خطوات', howH: 'من امتحان تحديد المستوى لخطة كل أسبوع', howP: 'من غير ما تستنى حد: بياناتك وبس، والامتحان بيفتح على طول.',
+      s1h: 'سجّل وادخل امتحان تحديد المستوى', s1p: 'اكتب اسمك ورقمك ورقم ولي أمرك واختار صفك. الامتحان بيفتحلك على طول ومجاني.',
+      s2h: 'شوف مستواك في كل درس', s2p: 'النتيجة والتصحيح ومستواك في كل مهارة بيظهروا أول ما تخلص، بالألوان:',
+      lvG: 'متمكن', lvY: 'محتاج مراجعة', lvR: 'محتاج تدريب',
+      s3h: 'امتحان جديد كل أسبوع', s3p: 'لو حبيت تكمل: امتحان في كل مادة كل أسبوع على درس الأسبوع لحد آخر السنة، وولي أمرك بيتابع معاك.',
+      seeEye: 'جوه المنصة', seeH: 'شوف الشاشات الحقيقية قبل ما تسجل', seeP: 'دي نفس الصفحات اللي الطالب والمدرس بيستخدموها.',
+      demoNote: 'الأسماء والأرقام في الصور بيانات تجريبية للعرض.',
+      v_sLevel: 'الطالب: مستواه', v_sStats: 'الطالب: إحصائياته', v_sList: 'الطالب: امتحاناته', v_tStudents: 'المدرس: الطلاب', v_tStats: 'المدرس: الإحصائيات', v_tExams: 'المدرس: الامتحانات', v_tBank: 'المدرس: بنك الأسئلة',
+      vh_sLevel: 'مستواك في كل مهارة، والأضعف الأول', vp_sLevel: 'محسوب من آخر إجاباتك في كل مهارة. عارف تبدأ منين على طول.', vl_sLevel: 'نسبة لكل درس|ترتيب من الأضعف للأقوى|بيتحدث بعد كل امتحان',
+      vh_sStats: 'متوسطك وحضورك وترتيبك', vp_sStats: 'رسوم بيانية بتوريك تقدمك مع الوقت، وحضورك وغيابك.', vl_sStats: 'متوسط الامتحانات|نسبة الحضور|درجاتك بمرور الوقت',
+      vh_sList: 'كل امتحاناتك ودرجاتك', vp_sList: 'امتحانات بوقت، وبعدها التصحيح وشرح كل إجابة.', vl_sList: 'امتحانات بوقت محدد|تصحيح وشرح|تنزّل امتحاناتك المصححة PDF',
+      vh_tStudents: 'طلابك ومجموعاتك في مكان واحد', vp_tStudents: 'أرقام الطلاب وأولياء الأمور، وواتساب بضغطة، والرقم السري وكارت الدخول.', vl_tStudents: 'مجموعات وصفوف|استيراد طلاب من شيت|رسالة ترحيب جاهزة',
+      vh_tStats: 'إحصائيات كل مجموعة وكل طالب', vp_tStats: 'الحضور بالأسبوع، ومتوسط كل امتحان، والمستحق من الفلوس.', vl_tStats: 'حضور وغياب|متوسطات الامتحانات|نقط ضعف كل درس',
+      vh_tExams: 'امتحانات وواجبات في دقايق', vp_tExams: 'من بنكك أو من الكتاب أو بالذكاء الاصطناعي، وبعدها تتاح للمجموعة بميعاد فتح وقفل.', vl_tExams: 'امتحان من الدروس اللي تختارها|نموذج كامل للمنهج|امتحان من ملف PDF',
+      vh_tBank: 'بنك أسئلة بيكبر معاك', vp_tBank: 'ارفع ورقة أو صورة والمنصة تقرأ الأسئلة، أو ولّد أسئلة جديدة، وراجعها قبل ما تستخدمها.', vl_tBank: 'قراءة PDF وصور|توليد بالذكاء الاصطناعي|مراجعة الأسئلة قبل الاستخدام',
+      ftEye: 'للمدرسين والسناتر', ftH: 'كل شغلك في منصة واحدة', ftP: 'وفّر وقت التحضير والتصحيح والمتابعة، وركّز على الشرح.',
+      f1h: 'امتحانات بالذكاء الاصطناعي', f1p: 'أسئلة جاهزة من بنكك أو من الكتاب في دقايق.',
+      f2h: 'بنك أسئلة', f2p: 'ارفع ورقة أو كتاب والمنصة تقرأ الأسئلة.',
+      f3h: 'تصحيح تلقائي', f3p: 'الاختيارات على طول، والمقالي بالذكاء الاصطناعي وإنت تراجع.',
+      f4h: 'مذكرات تفاعلية', f4p: 'شرح كل درس بأمثلة وأسئلة، والطالب يحفظها PDF.',
+      f5h: 'حصص وحضور QR', f5p: 'تطبيق سكانر للحضور وتنبيه للغياب المتكرر.',
+      f6h: 'فلوس الطلاب', f6p: 'مصاريف ومدفوعات ومتأخرات في مكان واحد.',
+      f7h: 'رسايل وإعلانات', f7p: 'كلّم طالب أو مجموعة كاملة وابعت صور.',
+      f8h: 'تقارير ولي الأمر', f8p: 'رابط ورسالة أسبوعية بمستوى الطالب.',
+      f9h: 'إحصائيات ونقط ضعف', f9p: 'لكل طالب ولكل مجموعة ولكل درس.',
+      f10h: 'إشعارات الموبايل', f10p: 'امتحان جديد ونتيجة ورسالة من غير ما يفتح.',
+      f11h: 'فريق ومساعدين', f11p: 'السكرتارية والمساعدين بصلاحيات على قد شغلهم.',
+      f12h: 'امتحان أسبوعي جاهز', f12p: 'المنصة بتجهز امتحان الأسبوع وإنت توافق.',
+      stEye: 'للطالب: مذاكرة بطعم اللعب', stH: 'بيذاكر وهو بيلعب، وبيتنافس مع زمايله', stP: 'المذاكرة مش امتحانات بس.',
+      g1h: 'مسابقات وألعاب في المذكرة', g1p: 'من سيربح المليون، تحدي الـ 60 ثانية، وصح ولا غلط. بيلعب وهو بيراجع الدرس.',
+      g2h: 'ترتيبه وسط زمايله', g2p: 'ترتيبه في مجموعته في الحضور والالتزام، والمنافسة بتخليه يدخل يمتحن ويعرف مستواه دايماً.',
+      g3h: 'فيديوهات الشرح والحل', g3p: 'فيديوهات الدروس والحلول مع الحصص، يرجعلها وقت ما يحب.',
+      g4h: 'اسأل واطلب مراجعة', g4p: 'لو شايف إن إجابته صح، يطلب مراجعة السؤال أو يسأل مدرسه برسالة.',
+      supH: 'أول أسبوع معانا: دعم وتدريب كامل', supP: 'أول ما تشترك: أسبوع دعم 24 ساعة ليك وللسكرتارية، نعلمكم كل حاجة في المنصة، وإحنا اللي بندخل طلابك من غير مجهود منك.', supBtn: 'اطلب حساب تجريبي',
+      goEye: 'ابدأ دلوقتي', goH: 'جرّب بنفسك', goP: 'الطالب يمتحن على طول، والمدرس يطلب حساب تجريبي.',
+      fsTag: 'للطالب', fsH: 'امتحان تحديد المستوى مجاناً', fsP: 'بياناتك وبس، والامتحان يفتحلك على طول على الجهاز ده.',
+      fName: 'الاسم بالكامل', fPhone: 'رقم موبايلك', fParent: 'رقم ولي الأمر', fCur: 'المنهج', fGrade: 'الصف الدراسي', fsGo: 'ابدأ الامتحان',
+      fsMini: 'هنستخدم الأرقام عشان نبعتلك نتيجتك ونتواصل معاك، ومش هنشاركها مع حد.',
+      ftTag: 'للمدرس', ftFH: 'اطلب حساب تجريبي', ftFP: 'بنراجع بياناتك ونبعتلك بيانات الدخول على واتساب. الحساب التجريبي مفتوح 3 أيام.',
+      fTName: 'اسمك', fEmail: 'الإيميل (جيميل)', fTPhone: 'رقم الموبايل (واتساب)', fSub: 'المادة', fTGrade: 'الصفوف اللي بتدرسها', fLang: 'لغة الحساب والرسائل', fNote: 'حاجة تحب تقولها (اختياري)', ftGo: 'ابعت الطلب',
+      ftMini: 'هتقدر تجرب: طالب واحد، امتحان واحد لحد 5 أسئلة، وسؤال بالذكاء الاصطناعي.',
+      choose: 'اختار', other: 'مادة تانية', soon: 'امتحانات تحديد المستوى بتتجهز دلوقتي. كلمنا على واتساب ونبلغك أول ما تفتح.',
+      sending: 'بنجهز...', opening: 'تمام! بنفتحلك الامتحان دلوقتي...',
+      tDone: 'وصلنا طلبك. هنراجع البيانات ونبعتلك بيانات الحساب التجريبي على الواتساب.',
+      e_BAD_REQUEST: 'حصلت مشكلة في الإرسال. جرّب تاني بعد شوية.', e_LIMIT: 'عدد التسجيلات النهارده كبير. جرّب تاني بكرة أو كلمنا على واتساب.',
+      e_NOT_OPEN: 'الصف ده لسه مش متاح. اختار صف تاني أو كلمنا.', e_PHONE_EXISTS: 'الرقم ده متسجل عندنا بالفعل. لو ده حسابك سجّل دخول، أو كلمنا على واتساب.',
+      e_FULL: 'مش قادرين نضيف طلاب دلوقتي. كلمنا على واتساب.', e_NAME_REQUIRED: 'اكتب الاسم.', e_NAME_TOO_LONG: 'الاسم طويل قوي.',
+      e_PHONE_INVALID: 'رقم الموبايل مش مظبوط. اكتبه زي 01012345678.', e_PHONE_REQUIRED: 'اكتب رقم الموبايل.', e_PARENT_PHONE_REQUIRED: 'اكتب رقم ولي الأمر.',
+      e_PHONES_SAME: 'رقمك ورقم ولي الأمر لازم يكونوا مختلفين.', e_EMAIL_INVALID: 'الإيميل مش مظبوط.', e_CURRICULUM_INVALID: 'اختار المنهج.', e_SUBJECT_REQUIRED: 'اختار المادة.',
+      e_GRADE_REQUIRED: 'اختار الصف.', e_BUSY: 'المنصة مشغولة. جرّب تاني بعد دقيقة.', e_NETWORK: 'مفيش اتصال بالمنصة. اتأكد من النت وجرّب تاني.', e_ERROR: 'حصلت مشكلة. جرّب تاني.',
+      e_FIELD_TOO_LONG: 'في خانة طويلة قوي.',
+      faqEye: 'أسئلة', faqH: 'أسئلة بتتسأل كتير', waFoot: 'كلمنا على واتساب', waHello: 'السلام عليكم، عايز أعرف أكتر عن Examora.',
+      q1: 'امتحان تحديد المستوى بفلوس؟', a1: 'لأ، مجاني. بعده لو حابب تكمل في الامتحانات الأسبوعية كلمنا على واتساب ونعرفك التفاصيل.',
+      q2: 'إزاي المدرس يجرب المنصة؟', a2: 'ابعت طلب الحساب التجريبي من فوق. بنراجع البيانات ونبعتلك بيانات الدخول على واتساب. الحساب مفتوح 3 أيام بحدود صغيرة عشان تشوف كل حاجة بنفسك.',
+      q3: 'الأسعار كام؟', a3: 'السعر بيتحدد حسب عدد طلابك وشغلك. كلمنا على واتساب ونبعتلك العرض المناسب ليك.',
+      q4: 'بتدعموا مناهج إيه؟', a4: 'الثانوية العامة (عربي ولغات)، البكالوريا، SAT، ACT، EST، وIGCSE.',
+      q5: 'أسئلتي ممكن حد ياخدها؟', a5: 'أسئلتك خاصة بيك ومحدش يشوفها إلا لو إنت اخترت تشاركها. والإجابات الصحيحة مش بتوصل للطالب قبل ميعاد النتيجة.',
+      q6: 'المنصة بتشتغل على الموبايل؟', a6: 'أيوه، على الموبايل والتابلت والكمبيوتر، وتقدر تثبتها كتطبيق ويوصلك إشعار بالامتحان الجديد والنتيجة والرسايل.',
+      copy: 'Examora'
+    },
+    en: {
+      title: 'Examora - exams and progress for teachers, students and parents',
+      nHow: 'How it works', nSee: 'See inside', nTeachers: 'For teachers', nFaq: 'FAQ', login: 'Sign in', teacherLogin: 'Teacher sign in', otherLang: 'العربية',
+      heroChip: 'Exams and progress platform', heroH1a: 'Know every student\'s level in every lesson', heroH1b: 'from the first exam',
+      heroLead: 'Exams that grade themselves, every skill colour-coded, a new exam every week, and parents kept in the loop. One place for teachers and students.',
+      ctaStudent: 'I\'m a student: free placement test', ctaTeacher: 'I\'m a teacher: try Examora', haveAccount: 'Have an account? Sign in',
+      tick1: 'Arabic and English', tick2: 'Phone, tablet and computer', tick3: 'Phone notifications',
+      fl1: 'Mastered 6 skills', fl2: 'Needs practice: Linear equations',
+      whoEye: 'Who is Examora for?', whoH: 'Everyone gets what they need', whoP: 'Students know where they stand, parents stop guessing, teachers save hours.',
+      w1h: 'Students', w1p: 'See exactly where you stand in every lesson and study only what you are missing. A new exam every week measures your progress.',
+      w2h: 'Parents', w2p: 'One link shows your child\'s level, attendance and grades, plus a weekly report on WhatsApp.',
+      w3h: 'Teachers', w3p: 'Exams, question bank, grading, attendance, fees and messages in one place, with the weak points of every student and group.',
+      howEye: 'For students in 3 steps', howH: 'From a placement test to a plan every week', howP: 'No waiting: just your details, and the exam opens right away.',
+      s1h: 'Sign up and take the placement test', s1p: 'Your name, your number, your parent\'s number and your grade. The test opens right away, free.',
+      s2h: 'See your level in every lesson', s2p: 'Your score, the corrections and your level in every skill show as soon as you finish:',
+      lvG: 'Mastered', lvY: 'Needs review', lvR: 'Needs practice',
+      s3h: 'A new exam every week', s3p: 'If you go on: an exam in every subject every week on that week\'s lesson until the end of the year, and your parent follows along.',
+      seeEye: 'Inside Examora', seeH: 'See the real screens before you sign up', seeP: 'These are the same pages students and teachers use.',
+      demoNote: 'Names and numbers in the pictures are demo data.',
+      v_sLevel: 'Student: my level', v_sStats: 'Student: statistics', v_sList: 'Student: exams', v_tStudents: 'Teacher: students', v_tStats: 'Teacher: statistics', v_tExams: 'Teacher: exams', v_tBank: 'Teacher: question bank',
+      vh_sLevel: 'Your level in every skill, weakest first', vp_sLevel: 'Built from your latest answers in each skill, so you know where to start.', vl_sLevel: 'A percentage per lesson|Weakest to strongest|Updated after every exam',
+      vh_sStats: 'Your average, attendance and rank', vp_sStats: 'Charts of your progress over time, and your attendance.', vl_sStats: 'Exam average|Attendance rate|Scores over time',
+      vh_sList: 'All your exams and scores', vp_sList: 'Timed exams, then the corrections with an explanation for every answer.', vl_sList: 'Timed exams|Corrections and explanations|Download your corrected exams as PDF',
+      vh_tStudents: 'Your students and groups in one place', vp_tStudents: 'Student and parent numbers, WhatsApp in one tap, PINs and ID cards.', vl_tStudents: 'Groups and grades|Import students from a sheet|A ready welcome message',
+      vh_tStats: 'Statistics for every group and student', vp_tStats: 'Weekly attendance, the average of each exam and the fees due.', vl_tStats: 'Attendance|Exam averages|Weak points per lesson',
+      vh_tExams: 'Exams and homework in minutes', vp_tExams: 'From your bank, from the book or with AI, then open it for a group with an opening and closing time.', vl_tExams: 'An exam from the lessons you pick|A full official format|An exam from a PDF file',
+      vh_tBank: 'A question bank that grows with you', vp_tBank: 'Upload a paper or a photo and Examora reads the questions, or generate new ones, then review them before use.', vl_tBank: 'Reads PDFs and photos|AI generation|Review before use',
+      ftEye: 'For teachers and centres', ftH: 'Your whole workflow in one platform', ftP: 'Save time on preparing, grading and following up, and focus on teaching.',
+      f1h: 'AI exams', f1p: 'Ready questions from your bank or the book in minutes.',
+      f2h: 'Question bank', f2p: 'Upload a paper or a book and Examora reads the questions.',
+      f3h: 'Automatic grading', f3p: 'Multiple choice at once; written answers by AI, reviewed by you.',
+      f4h: 'Interactive study memos', f4p: 'Every lesson with examples and questions; students save it as PDF.',
+      f5h: 'Classes and QR attendance', f5p: 'A scanner app for attendance and alerts for repeated absence.',
+      f6h: 'Student fees', f6p: 'Charges, payments and what is owed in one place.',
+      f7h: 'Messages and announcements', f7p: 'Talk to a student or a whole group, with photos.',
+      f8h: 'Parent reports', f8p: 'A link and a weekly message with the student\'s level.',
+      f9h: 'Statistics and weak points', f9p: 'For every student, every group and every lesson.',
+      f10h: 'Phone notifications', f10p: 'New exam, result or message without opening the site.',
+      f11h: 'Team and assistants', f11p: 'Secretaries and assistants with just the permissions they need.',
+      f12h: 'A ready weekly exam', f12p: 'Examora prepares the week\'s exam and you approve it.',
+      stEye: 'For students: studying that feels like playing', stH: 'They learn while they play, and compete with classmates', stP: 'Studying is more than exams.',
+      g1h: 'Games in the study memo', g1p: 'Who Wants to Be a Millionaire, the 60-second challenge and true or false, while reviewing the lesson.',
+      g2h: 'Their rank among classmates', g2p: 'Their rank in their group, so they keep coming back to take exams and check their level.',
+      g3h: 'Explanation and solution videos', g3p: 'Lesson and solution videos with the classes, to watch again any time.',
+      g4h: 'Ask for a review', g4p: 'Sure an answer was right? Ask for a review of the question, or message the teacher.',
+      supH: 'Your first week: full support and training', supP: 'When you subscribe: a week of 24-hour support for you and your secretaries, training on everything in Examora, and we add your students for you.', supBtn: 'Ask for a trial account',
+      goEye: 'Start now', goH: 'Try it yourself', goP: 'Students start the test right away; teachers ask for a trial account.',
+      fsTag: 'Students', fsH: 'Free placement test', fsP: 'Just your details, and the test opens right away on this device.',
+      fName: 'Full name', fPhone: 'Your mobile', fParent: 'Parent\'s mobile', fCur: 'Curriculum', fGrade: 'Grade', fsGo: 'Start the test',
+      fsMini: 'We use the numbers to send your result and contact you. We never share them.',
+      ftTag: 'Teachers', ftFH: 'Ask for a trial account', ftFP: 'We check your details and send your sign-in on WhatsApp. The trial account is open for 3 days.',
+      fTName: 'Your name', fEmail: 'Email (Gmail)', fTPhone: 'Mobile (WhatsApp)', fSub: 'Subject', fTGrade: 'Grades you teach', fLang: 'Account and message language', fNote: 'Anything to add (optional)', ftGo: 'Send the request',
+      ftMini: 'You can try: one student, one exam of up to 5 questions, and one AI question.',
+      choose: 'Choose', other: 'Another subject', soon: 'Placement tests are being prepared. Message us on WhatsApp and we will tell you when they open.',
+      sending: 'Working...', opening: 'Great! Opening your test now...',
+      tDone: 'We got your request. We will check your details and send your trial sign-in on WhatsApp.',
+      e_BAD_REQUEST: 'Something went wrong while sending. Please try again in a moment.', e_LIMIT: 'Too many sign-ups today. Please try tomorrow or message us on WhatsApp.',
+      e_NOT_OPEN: 'This grade is not open yet. Choose another one or message us.', e_PHONE_EXISTS: 'This number is already on Examora. If it is your account, sign in, or message us on WhatsApp.',
+      e_FULL: 'We cannot add students right now. Message us on WhatsApp.', e_NAME_REQUIRED: 'Write your name.', e_NAME_TOO_LONG: 'The name is too long.',
+      e_PHONE_INVALID: 'The mobile number is not valid.', e_PHONE_REQUIRED: 'Write the mobile number.', e_PARENT_PHONE_REQUIRED: 'Write the parent\'s number.',
+      e_PHONES_SAME: 'Your number and your parent\'s number must be different.', e_EMAIL_INVALID: 'The email is not valid.', e_CURRICULUM_INVALID: 'Choose the curriculum.', e_SUBJECT_REQUIRED: 'Choose the subject.',
+      e_GRADE_REQUIRED: 'Choose the grade.', e_BUSY: 'Examora is busy. Please try again in a minute.', e_NETWORK: 'Cannot reach Examora. Check your internet and try again.', e_ERROR: 'Something went wrong. Please try again.',
+      e_FIELD_TOO_LONG: 'One of the fields is too long.',
+      faqEye: 'FAQ', faqH: 'Questions people ask', waFoot: 'Message us on WhatsApp', waHello: 'Hello, I would like to know more about Examora.',
+      q1: 'Is the placement test free?', a1: 'Yes. After it, if you want to go on with the weekly exams, message us on WhatsApp for the details.',
+      q2: 'How can a teacher try Examora?', a2: 'Send the trial request above. We check your details and send your sign-in on WhatsApp. The trial account is open for 3 days with small limits so you can see everything yourself.',
+      q3: 'How much does it cost?', a3: 'The price depends on your number of students and your work. Message us on WhatsApp and we will send you the right offer.',
+      q4: 'Which curricula do you support?', a4: 'Egyptian Thanaweya Amma (Arabic and languages), the Baccalaureate, SAT, ACT, EST and IGCSE.',
+      q5: 'Can anyone take my questions?', a5: 'Your questions are yours: nobody sees them unless you choose to share them. Correct answers never reach a student before the results time.',
+      q6: 'Does it work on phones?', a6: 'Yes: phones, tablets and computers. Install it as an app and get notified of new exams, results and messages.',
+      copy: 'Examora'
+    }
+  };
+  var ICONS = {
+    cap: 'M2 9l10-5 10 5-10 5z M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5',
+    family: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M2 20a6 6 0 0 1 12 0 M14 20h8a6 6 0 0 0-6-5',
+    board: 'M3 4h18v12H3z M8 20h8 M12 16v4 M7 12l3-3 2 2 4-4',
+    support: 'M4 13a8 8 0 0 1 16 0 M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2 M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2 M17 18c0 1.7-2 3-5 3',
+    f1: 'M6 3h9l4 4v14H6z M9 13l2 2 4-4', f2: 'M12 3l9 5-9 5-9-5z M3 13l9 5 9-5', f3: 'M4 7l2 2 3-3 M4 15l2 2 3-3 M12 8h8 M12 16h8',
+    f4: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z M4 5v16', f5: 'M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h3v3 M20 14v6h-3',
+    f6: 'M3 7h18v10H3z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4', f7: 'M4 5h16v11H9l-5 4z', f8: 'M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M5 20a7 7 0 0 1 14 0',
+    f9: 'M4 20V10 M10 20V4 M16 20v-8 M22 20H2', f10: 'M6 16V11a6 6 0 0 1 12 0v5l2 2H4z M10 21h4',
+    f11: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M2 20a6 6 0 0 1 12 0 M14 20h8a6 6 0 0 0-6-5', f12: 'M4 6h16v14H4z M4 11h16 M9 3v5 M15 3v5',
+    g1: 'M8 21h8 M12 17v4 M7 4h10v5a5 5 0 0 1-10 0z M7 6H4a3 3 0 0 0 3 4 M17 6h3a3 3 0 0 1-3 4', g2: 'M6 20V10 M12 20V4 M18 20v-6',
+    g3: 'M4 5h16v14H4z M10 9l5 3-5 3z', g4: 'M12 3a9 9 0 1 0 9 9 M12 8v5 M12 16h0'
+  };
+  var VIEWS = [['sLevel', 's', 'tabLevel'], ['sStats', 's', 'tabStats'], ['sList', 's', 'tabList'], ['tStudents', 't', 'students'], ['tStats', 't', 'tabStats'], ['tExams', 't', 'tabExams'], ['tBank', 't', 'tabBank']];
+  var LANG = 'ar', SITE = null, VIEW = 'sLevel', SHOWN = { s: 0, t: 0 };
+  function $(id) { return document.getElementById(id); }
+  function t(k) { return (T[LANG] && T[LANG][k]) || T.en[k] || ''; }
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag); attrs = attrs || {};
+    Object.keys(attrs).forEach(function (k) { if (k === 'text') n.textContent = attrs[k]; else n.setAttribute(k, attrs[k]); });
+    (kids || []).forEach(function (c) { if (c) n.appendChild(c); }); return n;
+  }
+  function icon(name) {
+    var ns = 'http://www.w3.org/2000/svg', s = document.createElementNS(ns, 'svg'), p = document.createElementNS(ns, 'path');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor'); s.setAttribute('stroke-width', '2'); s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round'); s.setAttribute('aria-hidden', 'true');
+    p.setAttribute('d', ICONS[name] || ''); s.appendChild(p); return s;
+  }
+  function execUrl() { var x = String(typeof EXAMORA_EXEC === 'string' ? EXAMORA_EXEC : '').trim(); return /^https:\/\/script\.google\.com\/(?:a\/macros\/[A-Za-z0-9.\-]+|macros)\/s\/[A-Za-z0-9_\-]+\/exec$/.test(x) ? x : ''; }
+  function safeLink(u) { u = String(u || '').trim(); return /^https:\/\/[^\s"'<>]+$/.test(u) ? u : ''; }
+  function loginUrl() { return safeLink(typeof EXAMORA_LOGIN === 'string' ? EXAMORA_LOGIN : '') || execUrl(); }
+  function teacherUrl() { return safeLink(typeof EXAMORA_TEACHER === 'string' ? EXAMORA_TEACHER : '') || (execUrl() ? execUrl() + '?portal=staff' : ''); }
+  function withLang(u) { return u ? u + (u.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + LANG : '#'; }
+  function img(kind, key) { return 'img/' + LANG + '_' + kind + '_' + key + '.jpg'; }
+
+  // ---------------- language ----------------
+  function apply() {
+    var h = document.documentElement; h.setAttribute('lang', LANG); h.setAttribute('dir', LANG === 'ar' ? 'rtl' : 'ltr'); document.title = t('title');
+    var n = document.querySelectorAll('[data-t]'); for (var i = 0; i < n.length; i++) n[i].textContent = t(n[i].getAttribute('data-t'));
+    $('langBtn').textContent = t('otherLang');
+    ['loginTop', 'loginHero', 'loginFoot'].forEach(function (id) { $(id).setAttribute('href', withLang(loginUrl())); });
+    $('teacherFoot').setAttribute('href', withLang(teacherUrl()));
+    $('heroDesk').setAttribute('src', img('t', 'tabStats')); $('heroPhone').setAttribute('src', img('s', 'tabLevel'));
+    $('copy').textContent = '© ' + new Date().getFullYear() + ' ' + t('copy');
+    renderTabs(); renderView(); renderFeats(); renderFaq(); fillForms(); wa();
+  }
+  function setLang(l) { LANG = l === 'en' ? 'en' : 'ar'; try { localStorage.setItem('exm_site_lang', LANG); } catch (e) { } apply(); }
+  $('langBtn').addEventListener('click', function () { setLang(LANG === 'ar' ? 'en' : 'ar'); });
+
+  // ---------------- static parts ----------------
+  function fillIcons() { var n = document.querySelectorAll('[data-ic]'); for (var i = 0; i < n.length; i++) { n[i].textContent = ''; n[i].appendChild(icon(n[i].getAttribute('data-ic'))); } }
+  function renderTabs() {
+    var box = $('tabs'); box.textContent = '';
+    VIEWS.forEach(function (v) {
+      var b = el('button', { type: 'button', role: 'tab', 'class': 'tab', 'aria-selected': v[0] === VIEW ? 'true' : 'false', text: t('v_' + v[0]) });
+      b.addEventListener('click', function () { VIEW = v[0]; renderTabs(); renderView(); }); box.appendChild(b);
+    });
+  }
+  function renderView() {
+    var v = VIEWS.filter(function (x) { return x[0] === VIEW; })[0];
+    $('vH').textContent = t('vh_' + v[0]); $('vP').textContent = t('vp_' + v[0]);
+    var ul = $('vL'); ul.textContent = ''; t('vl_' + v[0]).split('|').forEach(function (x) { ul.appendChild(el('li', { text: x })); });
+    var pic = $('vPic'); pic.textContent = '';
+    var im = el('img', { src: img(v[1], v[2]), alt: t('vh_' + v[0]), loading: 'lazy', width: v[1] === 's' ? '390' : '1280', height: v[1] === 's' ? '844' : '780' });
+    pic.appendChild(v[1] === 's' ? el('div', { 'class': 'phone' }, [im]) : el('div', { 'class': 'desk' }, [el('div', { 'class': 'bar' }, [el('i'), el('i'), el('i')]), im]));
+  }
+  function renderFeats() {
+    var box = $('feats'); box.textContent = '';
+    for (var i = 1; i <= 12; i++) box.appendChild(el('div', { 'class': 'card' }, [el('div', { 'class': 'ic' }, [icon('f' + i)]), el('h3', { text: t('f' + i + 'h') }), el('p', { text: t('f' + i + 'p') })]));
+    box = $('funs'); box.textContent = '';
+    for (i = 1; i <= 4; i++) box.appendChild(el('div', { 'class': 'card' }, [el('div', { 'class': 'ic' }, [icon('g' + i)]), el('h3', { text: t('g' + i + 'h') }), el('p', { text: t('g' + i + 'p') })]));
+  }
+  function renderFaq() {
+    var box = $('faqs'); box.textContent = '';
+    for (var i = 1; i <= 6; i++) box.appendChild(el('details', {}, [el('summary', { text: t('q' + i) }), el('p', { text: t('a' + i) })]));
+  }
+  function wa() {
+    var n = SITE && SITE.whatsapp ? String(SITE.whatsapp).replace(/\D/g, '') : '', a = $('waFoot');
+    a.classList.toggle('hide', !n); if (n) a.setAttribute('href', 'https://wa.me/' + n + '?text=' + encodeURIComponent(t('waHello')));
+  }
+
+  // ---------------- server ----------------
+  function post(body, cb) {
+    var url = execUrl(); if (!url || typeof fetch !== 'function') { cb({ ok: false, code: 'NETWORK' }); return; }
+    fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body), redirect: 'follow' })
+      .then(function (r) { return r.json(); }).then(function (j) { cb(j && typeof j === 'object' ? j : { ok: false, code: 'ERROR' }); })
+      .catch(function () { cb({ ok: false, code: 'NETWORK' }); });
+  }
+  function errMsg(r) { var k = 'e_' + String((r && r.code) || 'ERROR'); return t(k) || t('e_ERROR'); }
+  function say(id, text, kind) { var m = $(id); m.textContent = text || ''; m.className = 'msg' + (kind ? ' ' + kind : ''); }
+  function opt(v, text) { return el('option', { value: v, text: text }); }
+
+  // ---------------- forms ----------------
+  function fillForms() {
+    var s = SITE || { students: [], teachers: [] }, cur = $('s_cur').value;
+    var sc = $('s_cur'); sc.textContent = ''; sc.appendChild(opt('', t('choose')));
+    s.students.forEach(function (c) { sc.appendChild(opt(c.code, c.name)); }); if (cur) sc.value = cur;
+    fillGrades();
+    var tcur = $('t_cur').value, tc = $('t_cur'); tc.textContent = ''; tc.appendChild(opt('', t('choose')));
+    s.teachers.forEach(function (c) { tc.appendChild(opt(c.code, c.name)); }); if (tcur) tc.value = tcur;
+    fillSubjects();
+    if (SITE && !s.students.length) say('s_msg', t('soon'), ''); else if ($('s_msg').textContent === T.ar.soon || $('s_msg').textContent === T.en.soon) say('s_msg', '');
+    $('t_lang').value = $('t_lang').getAttribute('data-touched') ? $('t_lang').value : LANG;
+  }
+  function fillGrades() {
+    var c = (SITE ? SITE.students : []).filter(function (x) { return x.code === $('s_cur').value; })[0], g = $('s_grade'), cur = g.value; g.textContent = '';
+    g.appendChild(opt('', t('choose'))); (c ? c.grades : []).forEach(function (x) { g.appendChild(opt(x, x || '-')); });
+    if (c && c.grades.length === 1) g.value = c.grades[0]; else if (cur) g.value = cur;
+  }
+  function fillSubjects() {
+    var c = (SITE ? SITE.teachers : []).filter(function (x) { return x.code === $('t_cur').value; })[0], s = $('t_sub'), cur = s.value; s.textContent = '';
+    s.appendChild(opt('', t('choose'))); (c ? c.subjects : []).forEach(function (x) { s.appendChild(opt(x, x)); });
+    if (cur) s.value = cur;
+  }
+  $('s_cur').addEventListener('change', fillGrades);
+  $('t_cur').addEventListener('change', fillSubjects);
+  $('t_lang').addEventListener('change', function () { $('t_lang').setAttribute('data-touched', '1'); });
+
+  $('start-student').addEventListener('submit', function (e) {
+    e.preventDefault(); var b = $('s_go');
+    if (!$('s_name').value.trim()) { say('s_msg', t('e_NAME_REQUIRED'), 'err'); return; }
+    if (!$('s_phone').value.trim()) { say('s_msg', t('e_PHONE_REQUIRED'), 'err'); return; }
+    if (!$('s_parent').value.trim()) { say('s_msg', t('e_PARENT_PHONE_REQUIRED'), 'err'); return; }
+    if (!$('s_cur').value) { say('s_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
+    if (!$('s_grade').value && $('s_grade').options.length > 1) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
+    b.disabled = true; say('s_msg', t('sending'));
+    post({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, parentPhone: $('s_parent').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
+      lang: LANG, hp: $('s_web').value, ms: Date.now() - SHOWN.s }, function (r) {
+      if (r.ok && r.data && safeLink(r.data.open)) { say('s_msg', t('opening'), 'ok'); window.location.href = r.data.open; return; }
+      b.disabled = false; say('s_msg', errMsg(r), 'err');
+      if (r.params && r.params.whatsapp && !(SITE && SITE.whatsapp)) { SITE = SITE || { students: [], teachers: [] }; SITE.whatsapp = r.params.whatsapp; wa(); }
+    });
+  });
+  $('start-teacher').addEventListener('submit', function (e) {
+    e.preventDefault(); var b = $('t_go');
+    if (!$('t_name').value.trim()) { say('t_msg', t('e_NAME_REQUIRED'), 'err'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($('t_email').value.trim())) { say('t_msg', t('e_EMAIL_INVALID'), 'err'); return; }
+    if (!$('t_phone').value.trim()) { say('t_msg', t('e_PHONE_REQUIRED'), 'err'); return; }
+    if (!$('t_cur').value) { say('t_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
+    if (!$('t_sub').value) { say('t_msg', t('e_SUBJECT_REQUIRED'), 'err'); return; }
+    b.disabled = true; say('t_msg', t('sending'));
+    post({ action: 'teacherRequest', name: $('t_name').value, email: $('t_email').value.trim(), phone: $('t_phone').value, curriculum: $('t_cur').value, subject: $('t_sub').value,
+      grade: $('t_grade').value, lang: $('t_lang').value, note: $('t_note').value, hp: $('t_web').value, ms: Date.now() - SHOWN.t }, function (r) {
+      b.disabled = false;
+      if (r.ok) { $('ftBody').classList.add('hide'); say('t_msg', ''); $('t_msg').appendChild(el('div', { 'class': 'done', text: t('tDone') })); return; }
+      say('t_msg', errMsg(r), 'err');
+    });
+  });
+  // the time a person needs to fill a form (bots are faster)
+  function seen(id, key) { var f = $(id); var mark = function () { if (!SHOWN[key]) SHOWN[key] = Date.now(); }; f.addEventListener('focusin', mark); f.addEventListener('pointerdown', mark); }
+  seen('start-student', 's'); seen('start-teacher', 't');
+
+  // ---------------- start ----------------
+  var q = String(location.search || ''), m = /[?&]lang=(ar|en)\b/.exec(q), saved = null;
+  try { saved = localStorage.getItem('exm_site_lang'); } catch (e) { saved = null; }
+  LANG = m ? m[1] : (saved === 'en' || saved === 'ar') ? saved : 'ar';   // Arabic first; the English ads link with ?lang=en
+  fillIcons(); apply();
+  post({ action: 'site' }, function (r) { if (r.ok && r.data) { SITE = r.data; fillForms(); wa(); } });
+})();
+</script>
+</body>
+</html>
