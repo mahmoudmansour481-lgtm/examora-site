@@ -8,6 +8,8 @@
 <meta property="og:title" content="Examora">
 <meta property="og:description" content="امتحانات ومتابعة للمدرس والطالب وولي الأمر - Exams and progress for teachers, students and parents.">
 <meta name="theme-color" content="#f4f1ea">
+<script>/* THEMES: the look saved on this device (exm_theme), set before the first paint; the first visit gets the green paper look */
+(function () { var k = "editorial"; try { var s = localStorage.getItem("exm_theme"); if (/^(classic|editorial|navy|brown)$/.test(s || "")) k = s; } catch (e) { } document.documentElement.setAttribute("data-theme", k); })();</script>
 <link rel="preload" href="fonts/readex-pro-arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="img/icon-192.png">
 <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -89,7 +91,7 @@ a{color:var(--pine)}
 .mw .r b{font-weight:700;text-align:end}
 @media (max-width:940px){.hero .wrap{grid-template-columns:1fr;padding-top:40px}.stage{min-height:0;height:min(104vw,520px)}}
 /* curricula band */
-.marq{direction:ltr;overflow:hidden;border-bottom:1px solid var(--line);background:var(--pine);color:#f4f1ea;padding:14px 0;white-space:nowrap}
+.marq{direction:ltr;overflow:hidden;border-bottom:1px solid var(--line);background:var(--pine);color:var(--paper);padding:14px 0;white-space:nowrap}
 .marq .trk{display:inline-flex;gap:46px;padding-inline-end:46px;animation:marq 32s linear infinite;font-weight:600;font-size:18px;letter-spacing:.02em}
 .marq span{display:inline-flex;align-items:center;gap:46px}.marq span:after{content:"";width:7px;height:7px;border-radius:50%;background:var(--saff)}
 @keyframes marq{to{transform:translateX(-50%)}}
@@ -114,7 +116,7 @@ section{padding:88px 0}
 .ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--paper);color:var(--pine);border:1px solid var(--line);transition:background-color .3s,color .3s}
 .card:hover .ic{background:var(--pine);color:#fffdf8}
 .ic svg{width:24px;height:24px}
-.who .card:nth-child(2){background:var(--pine);border-color:var(--pine)}.who .card:nth-child(2) h3{color:#fffdf8}.who .card:nth-child(2) p{color:#cfe3de}.who .card:nth-child(2) .ic{background:rgba(255,255,255,.1);color:var(--saff);border-color:rgba(255,255,255,.15)}
+.who .card:nth-child(2){background:var(--pine);border-color:var(--pine)}.who .card:nth-child(2) h3{color:var(--card)}.who .card:nth-child(2) p{color:#cfe3de}.who .card:nth-child(2) .ic{background:rgba(255,255,255,.1);color:var(--saff);border-color:rgba(255,255,255,.15)}
 /* how */
 .steps{counter-reset:s}
 .step{padding-top:70px}
@@ -141,7 +143,7 @@ section{padding:88px 0}
 @media (max-width:860px){.view{grid-template-columns:1fr}.view .pic{order:-1}}
 /* features */
 .feat .card{padding:22px}.feat .card h3{font-size:17.5px}.feat .card p{font-size:15px}
-.band{position:relative;overflow:hidden;background:var(--ink);color:#f4f1ea;border-radius:28px;padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center}
+.band{position:relative;overflow:hidden;background:var(--ink);color:var(--paper);border-radius:28px;padding:40px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center}
 .band:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 59px,rgba(255,255,255,.04) 59px 60px)}
 .band > *{position:relative}
 .band h2{margin:0 0 6px;font-size:clamp(23px,3vw,32px);line-height:1.3;font-weight:700}
@@ -192,6 +194,17 @@ footer .brand{color:#f4f1ea}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--rd,0s)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 .hl{background-size:100% 28%}.mw .r i:after{transform:none}}
+
+/* THEMES (owner 2026-10-24): the same four looks as the apps; only the colour tokens change */
+html[data-theme=classic]{--paper:#f4f7fe;--paper2:#e6edfb;--card:#ffffff;--ink:#0e1b3d;--mut:#4f5f82;--line:#dce5f8;--pine:#1650c8;--pine2:#0b2c8f;--mint:#19a7ff;--saff:#ffb000;--saff2:#ffe3a3;--green:#16803c;--amber:#b77f00;--red:#c62828}
+html[data-theme=navy]{--paper:#f2f4f8;--paper2:#e3e8f1;--card:#ffffff;--ink:#111a2e;--mut:#56617a;--line:#d9dfe9;--pine:#1b2f5c;--pine2:#121f3f;--mint:#8fb0ff;--saff:#c9a227;--saff2:#efe0a8;--r:14px}
+html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b1d14;--mut:#715f52;--line:#e2d2bc;--pine:#6b3f22;--pine2:#4e2c16;--mint:#e3a779;--saff:#d0733f;--saff2:#f2cfb4;--green:#3d7a37;--r:24px}
+.thm{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;margin-inline-start:6px;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--ink) 30%,transparent);background:transparent;cursor:pointer}
+.thm i{width:20px;height:20px;border-radius:50%;background:conic-gradient(var(--pine) 0 50%,var(--saff) 50% 100%)}
+#thmMenu{position:fixed;z-index:200;min-width:230px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.2);padding:8px}
+#thmMenu button{display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:8px 10px;border:1px solid transparent;border-radius:12px;background:transparent;color:inherit;font:inherit;font-size:15px;text-align:start;cursor:pointer}
+#thmMenu button[aria-checked=true]{border-color:var(--pine);font-weight:700}#thmMenu button:hover{background:var(--paper)}
+#thmMenu .d{display:inline-flex}#thmMenu .d i{width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)}#thmMenu .d i+i{margin-inline-start:-8px}
 </style>
 </head>
 <body>
@@ -201,7 +214,7 @@ footer .brand{color:#f4f1ea}
     <nav class="nav" aria-label="Examora">
       <a class="lk" href="#how" data-t="nHow"></a><a class="lk" href="#see" data-t="nSee"></a><a class="lk" href="#teachers" data-t="nTeachers"></a><a class="lk" href="#faq" data-t="nFaq"></a>
       <a class="btn sm pri" id="loginTop" data-t="login"></a>
-      <button class="lang" id="langBtn" type="button"></button>
+      <button class="lang" id="langBtn" type="button"></button><button class="thm" id="thmBtn" type="button" aria-haspopup="menu"><i aria-hidden="true"></i></button>
     </nav>
   </div>
 </header>
@@ -351,6 +364,7 @@ footer .brand{color:#f4f1ea}
   var T = {
     ar: {
       title: 'Examora - امتحانات ومتابعة للمدرس والطالب وولي الأمر',
+      th_title: 'التصميم', th_classic: 'الكلاسيك (الأزرق)', th_editorial: 'الورقي (الأخضر)', th_navy: 'الكحلي', th_brown: 'البني',
       nHow: 'إزاي بيشتغل', nSee: 'شوف المنصة', nTeachers: 'للمدرسين', nFaq: 'أسئلة', login: 'تسجيل الدخول', teacherLogin: 'دخول المدرسين', otherLang: 'English',
       heroChip: 'منصة امتحانات ومتابعة', heroH1a: 'اعرف مستوى كل طالب في كل درس', heroH1b: 'من أول امتحان',
       heroLead: 'امتحانات بتتصحح لوحدها، مستوى كل مهارة بالألوان، امتحان جديد كل أسبوع، ومتابعة لولي الأمر. كل ده في مكان واحد للمدرس والطالب.',
@@ -423,6 +437,7 @@ footer .brand{color:#f4f1ea}
     },
     en: {
       title: 'Examora - exams and progress for teachers, students and parents',
+      th_title: 'Look', th_classic: 'Classic (blue)', th_editorial: 'Paper (green)', th_navy: 'Navy', th_brown: 'Brown',
       nHow: 'How it works', nSee: 'See inside', nTeachers: 'For teachers', nFaq: 'FAQ', login: 'Sign in', teacherLogin: 'Teacher sign in', otherLang: 'العربية',
       heroChip: 'Exams and progress platform', heroH1a: 'Know every student\'s level in every lesson', heroH1b: 'from the first exam',
       heroLead: 'Exams that grade themselves, every skill colour-coded, a new exam every week, and parents kept in the loop. One place for teachers and students.',
@@ -532,7 +547,7 @@ footer .brand{color:#f4f1ea}
   function apply() {
     var h = document.documentElement; h.setAttribute('lang', LANG); h.setAttribute('dir', LANG === 'ar' ? 'rtl' : 'ltr'); document.title = t('title');
     var n = document.querySelectorAll('[data-t]'); for (var i = 0; i < n.length; i++) n[i].textContent = t(n[i].getAttribute('data-t'));
-    $('langBtn').textContent = t('otherLang');
+    $('langBtn').textContent = t('otherLang'); $('thmBtn').setAttribute('aria-label', t('th_title')); $('thmBtn').title = t('th_title'); thmClose();
     ['loginTop', 'loginHero', 'loginFoot'].forEach(function (id) { $(id).setAttribute('href', withLang(loginUrl())); });
     $('teacherFoot').setAttribute('href', withLang(teacherUrl()));
     $('heroDesk').setAttribute('src', img('t', 'tabStats')); $('heroPhone').setAttribute('src', img('s', 'tabLevel'));
@@ -541,6 +556,28 @@ footer .brand{color:#f4f1ea}
   }
   function setLang(l) { LANG = l === 'en' ? 'en' : 'ar'; try { localStorage.setItem('exm_site_lang', LANG); } catch (e) { } apply(); }
   $('langBtn').addEventListener('click', function () { setLang(LANG === 'ar' ? 'en' : 'ar'); });
+
+  // ---------------- looks (themes) ----------------
+  var THM = ['classic', 'editorial', 'navy', 'brown'], THM_DOTS = { classic: ['#1650c8', '#ffb000'], editorial: ['#0f4f47', '#e3a13a'], navy: ['#1b2f5c', '#c9a227'], brown: ['#6b3f22', '#d0733f'] }, thmMenu = null;
+  function thmName(k) { return t('th_' + k); }
+  function thmClose() { if (thmMenu) { thmMenu.parentNode.removeChild(thmMenu); thmMenu = null; } }
+  function thmSet(k) { document.documentElement.setAttribute('data-theme', k); try { localStorage.setItem('exm_theme', k); } catch (e) { } thmClose(); }
+  $('thmBtn').addEventListener('click', function (ev) {
+    ev.stopPropagation(); if (thmMenu) { thmClose(); return; }
+    var cur = document.documentElement.getAttribute('data-theme');
+    thmMenu = el('div', { id: 'thmMenu', role: 'menu' });
+    THM.forEach(function (k) {
+      var d = el('span', { 'class': 'd', 'aria-hidden': 'true' }); THM_DOTS[k].forEach(function (c) { var i = el('i'); i.style.background = c; d.appendChild(i); });
+      var b = el('button', { type: 'button', role: 'menuitemradio', 'aria-checked': k === cur ? 'true' : 'false' }, [d, el('span', { text: thmName(k) })]);
+      b.addEventListener('click', function () { thmSet(k); }); thmMenu.appendChild(b);
+    });
+    document.body.appendChild(thmMenu);
+    var r = $('thmBtn').getBoundingClientRect(), w = thmMenu.offsetWidth, x = LANG === 'ar' ? r.left : r.right - w;
+    thmMenu.style.top = Math.round(r.bottom + 8) + 'px'; thmMenu.style.left = Math.max(12, Math.min(window.innerWidth - w - 12, Math.round(x))) + 'px';
+    var on = thmMenu.querySelector('[aria-checked=true]'); if (on) on.focus();
+  });
+  document.addEventListener('click', function (e) { if (thmMenu && !thmMenu.contains(e.target)) thmClose(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') thmClose(); });
 
   // ---------------- static parts ----------------
   function fillIcons() { var n = document.querySelectorAll('[data-ic]'); for (var i = 0; i < n.length; i++) { n[i].textContent = ''; n[i].appendChild(icon(n[i].getAttribute('data-ic'))); } }
