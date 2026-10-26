@@ -638,6 +638,8 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     var c = (SITE ? SITE.students : []).filter(function (x) { return x.code === $('s_cur').value; })[0], g = $('s_grade'), cur = g.value; g.textContent = '';
     g.appendChild(opt('', t('choose'))); (c ? c.grades : []).forEach(function (x) { g.appendChild(opt(x, x || '-')); });
     if (c && c.grades.length === 1) g.value = c.grades[0]; else if (cur) g.value = cur;
+    var none = !!(c && c.grades.length && c.grades.every(function (x) { return !x; }));   // owner 2026-10-26: no school year to choose (the SAT is one test for every grade): the field is hidden
+    g.required = !none; g.parentNode.classList.toggle('hide', none);
   }
   function fillSubjects() {
     var c = (SITE ? SITE.teachers : []).filter(function (x) { return x.code === $('t_cur').value; })[0], s = $('t_sub'), cur = s.value; s.textContent = '';
@@ -654,7 +656,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     if (!$('s_phone').value.trim()) { say('s_msg', t('e_PHONE_REQUIRED'), 'err'); return; }
     if (!$('s_parent').value.trim()) { say('s_msg', t('e_PARENT_PHONE_REQUIRED'), 'err'); return; }
     if (!$('s_cur').value) { say('s_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
-    if (!$('s_grade').value && $('s_grade').options.length > 1) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
+    if (!$('s_grade').value && $('s_grade').options.length > 1 && !$('s_grade').parentNode.classList.contains('hide')) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
     b.disabled = true; say('s_msg', t('sending'));
     post({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, parentPhone: $('s_parent').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
       lang: LANG, hp: $('s_web').value, ms: Date.now() - SHOWN.s }, function (r) {
