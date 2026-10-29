@@ -308,8 +308,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
         <h3 data-t="fsH"></h3><p class="sub" data-t="fsP"></p>
         <div id="fsBody">
           <label for="s_name" data-t="fName"></label><input id="s_name" autocomplete="name" maxlength="100" required>
-          <div class="two"><div><label for="s_phone" data-t="fPhone"></label><input id="s_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required></div>
-            <div><label for="s_parent" data-t="fParent"></label><input id="s_parent" inputmode="tel" dir="ltr" maxlength="20" required></div></div>
+          <label for="s_phone" data-t="fPhone"></label><input id="s_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required>
           <div class="two"><div><label for="s_cur" data-t="fCur"></label><select id="s_cur" required></select></div><div><label for="s_grade" data-t="fGrade"></label><select id="s_grade" required></select></div></div>
           <div class="hpw" aria-hidden="true"><label for="s_web">web</label><input id="s_web" tabindex="-1" autocomplete="off"></div>
           <button class="btn blue" type="submit" id="s_go" data-t="fsGo"></button>
@@ -654,11 +653,10 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     e.preventDefault(); var b = $('s_go');
     if (!$('s_name').value.trim()) { say('s_msg', t('e_NAME_REQUIRED'), 'err'); return; }
     if (!$('s_phone').value.trim()) { say('s_msg', t('e_PHONE_REQUIRED'), 'err'); return; }
-    if (!$('s_parent').value.trim()) { say('s_msg', t('e_PARENT_PHONE_REQUIRED'), 'err'); return; }
     if (!$('s_cur').value) { say('s_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
     if (!$('s_grade').value && $('s_grade').options.length > 1 && !$('s_grade').parentNode.classList.contains('hide')) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
     b.disabled = true; say('s_msg', t('sending'));
-    post({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, parentPhone: $('s_parent').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
+    post({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
       lang: LANG, hp: $('s_web').value, ms: Date.now() - SHOWN.s }, function (r) {
       if (r.ok && r.data && safeLink(r.data.open)) { say('s_msg', t('opening'), 'ok'); window.location.href = r.data.open; return; }
       b.disabled = false; say('s_msg', errMsg(r), 'err');
