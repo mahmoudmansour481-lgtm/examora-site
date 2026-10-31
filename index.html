@@ -423,7 +423,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       e_FULL: 'مش قادرين نضيف طلاب دلوقتي. كلمنا على واتساب.', e_NAME_REQUIRED: 'اكتب الاسم.', e_NAME_TOO_LONG: 'الاسم طويل قوي.',
       e_PHONE_INVALID: 'رقم الموبايل مش مظبوط. اكتبه زي 01012345678.', e_PHONE_REQUIRED: 'اكتب رقم الموبايل.', e_PARENT_PHONE_REQUIRED: 'اكتب رقم ولي الأمر.',
       e_PHONES_SAME: 'رقمك ورقم ولي الأمر لازم يكونوا مختلفين.', e_EMAIL_INVALID: 'الإيميل مش مظبوط.', e_CURRICULUM_INVALID: 'اختار المنهج.', e_SUBJECT_REQUIRED: 'اختار المادة.',
-      e_GRADE_REQUIRED: 'اختار الصف.', e_BUSY: 'المنصة مشغولة. جرّب تاني بعد دقيقة.', e_NETWORK: 'مفيش اتصال بالمنصة. اتأكد من النت وجرّب تاني.', e_ERROR: 'حصلت مشكلة. جرّب تاني.',
+      e_GRADE_REQUIRED: 'اختار الصف.', e_BUSY: 'المنصة مشغولة. جرّب تاني بعد دقيقة.', e_POW_REQUIRED: 'متصفحك قديم أو الصفحة مفتوحة من بدري. حدّث الصفحة وجرّب تاني.', e_NETWORK: 'مفيش اتصال بالمنصة. اتأكد من النت وجرّب تاني.', e_ERROR: 'حصلت مشكلة. جرّب تاني.',
       e_FIELD_TOO_LONG: 'في خانة طويلة قوي.',
       faqEye: 'أسئلة', faqH: 'أسئلة بتتسأل كتير', waFoot: 'كلمنا على واتساب', waHello: 'السلام عليكم، عايز أعرف أكتر عن Examora.',
       q1: 'امتحان تحديد المستوى بفلوس؟', a1: 'لأ، مجاني. بعده لو حابب تكمل في الامتحانات الأسبوعية كلمنا على واتساب ونعرفك التفاصيل.',
@@ -496,7 +496,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       e_FULL: 'We cannot add students right now. Message us on WhatsApp.', e_NAME_REQUIRED: 'Write your name.', e_NAME_TOO_LONG: 'The name is too long.',
       e_PHONE_INVALID: 'The mobile number is not valid.', e_PHONE_REQUIRED: 'Write the mobile number.', e_PARENT_PHONE_REQUIRED: 'Write the parent\'s number.',
       e_PHONES_SAME: 'Your number and your parent\'s number must be different.', e_EMAIL_INVALID: 'The email is not valid.', e_CURRICULUM_INVALID: 'Choose the curriculum.', e_SUBJECT_REQUIRED: 'Choose the subject.',
-      e_GRADE_REQUIRED: 'Choose the grade.', e_BUSY: 'Examora is busy. Please try again in a minute.', e_NETWORK: 'Cannot reach Examora. Check your internet and try again.', e_ERROR: 'Something went wrong. Please try again.',
+      e_GRADE_REQUIRED: 'Choose the grade.', e_BUSY: 'Examora is busy. Please try again in a minute.', e_POW_REQUIRED: 'Your browser is too old or the page was open too long. Refresh the page and try again.', e_NETWORK: 'Cannot reach Examora. Check your internet and try again.', e_ERROR: 'Something went wrong. Please try again.',
       e_FIELD_TOO_LONG: 'One of the fields is too long.',
       faqEye: 'FAQ', faqH: 'Questions people ask', waFoot: 'Message us on WhatsApp', waHello: 'Hello, I would like to know more about Examora.',
       q1: 'Is the placement test free?', a1: 'Yes. After it, if you want to go on with the weekly exams, message us on WhatsApp for the details.',
@@ -656,7 +656,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     if (!$('s_cur').value) { say('s_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
     if (!$('s_grade').value && $('s_grade').options.length > 1 && !$('s_grade').parentNode.classList.contains('hide')) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
     b.disabled = true; say('s_msg', t('sending'));
-    post({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
+    withPow({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
       lang: LANG, hp: $('s_web').value, ms: Date.now() - SHOWN.s }, function (r) {
       if (r.ok && r.data && safeLink(r.data.open)) { say('s_msg', t('opening'), 'ok'); window.location.href = r.data.open; return; }
       b.disabled = false; say('s_msg', errMsg(r), 'err');
@@ -671,13 +671,32 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     if (!$('t_cur').value) { say('t_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
     if (!$('t_sub').value) { say('t_msg', t('e_SUBJECT_REQUIRED'), 'err'); return; }
     b.disabled = true; say('t_msg', t('sending'));
-    post({ action: 'teacherRequest', name: $('t_name').value, email: $('t_email').value.trim(), phone: $('t_phone').value, curriculum: $('t_cur').value, subject: $('t_sub').value,
+    withPow({ action: 'teacherRequest', name: $('t_name').value, email: $('t_email').value.trim(), phone: $('t_phone').value, curriculum: $('t_cur').value, subject: $('t_sub').value,
       lang: $('t_lang').value, note: $('t_note').value, hp: $('t_web').value, ms: Date.now() - SHOWN.t }, function (r) {
       b.disabled = false;
       if (r.ok) { $('ftBody').classList.add('hide'); say('t_msg', ''); $('t_msg').appendChild(el('div', { 'class': 'done', text: t('tDone') })); return; }
       say('t_msg', errMsg(r), 'err');
     });
   });
+  // anti-spam (audit 2026-10-31): a fresh puzzle from the server, solved here in under a second, sent with the form
+  function hex(buf) { var a = new Uint8Array(buf), s = ''; for (var i = 0; i < a.length; i++) s += (a[i] < 16 ? '0' : '') + a[i].toString(16); return s; }
+  function zeros(h) { var z = 0; for (var i = 0; i < h.length; i++) { var d = parseInt(h.charAt(i), 16); if (d === 0) { z += 4; continue; } return z + (d < 2 ? 3 : d < 4 ? 2 : d < 8 ? 1 : 0); } return z; }
+  function solve(p, cb) {
+    if (!p || !p.c || !p.bits) { cb(null); return; }
+    if (!(window.crypto && crypto.subtle && window.TextEncoder)) { cb(null); return; }
+    var enc = new TextEncoder(), n = 0;
+    (function step() {
+      var batch = [], i;
+      for (i = 0; i < 256; i++) batch.push(crypto.subtle.digest('SHA-256', enc.encode(p.c + ':' + (n + i))));
+      Promise.all(batch).then(function (hs) {
+        for (var k = 0; k < hs.length; k++) if (zeros(hex(hs[k])) >= p.bits) { cb({ c: p.c, n: n + k }); return; }
+        n += 256; if (n > 4000000) { cb(null); return; } step();
+      }, function () { cb(null); });
+    })();
+  }
+  function withPow(body, done) {
+    post({ action: 'site' }, function (r) { solve(r && r.ok && r.data ? r.data.pow : null, function (pw) { if (pw) body.pow = pw; post(body, done); }); });
+  }
   // the time a person needs to fill a form (bots are faster)
   function seen(id, key) { var f = $(id); var mark = function () { if (!SHOWN[key]) SHOWN[key] = Date.now(); }; f.addEventListener('focusin', mark); f.addEventListener('pointerdown', mark); }
   seen('start-student', 's'); seen('start-teacher', 't');
