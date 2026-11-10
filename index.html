@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Examora - امتحانات ومتابعة للمدرس والطالب وولي الأمر</title>
-<meta name="description" content="Examora: امتحانات بتتصحح لوحدها، مستوى كل طالب في كل درس بالألوان، امتحان جديد كل أسبوع، ومتابعة لولي الأمر. ثانوية عامة، بكالوريا، SAT، ACT، EST، IGCSE.">
+<title>Examora - منصة تعليمية متكاملة للمدرس والطالب وولي الأمر</title>
+<meta name="description" content="Examora: منصة واحدة لكل المواد والمناهج. امتحانات بتتصحح لوحدها، دروس أونلاين بالفيديو، حضور وحسابات، مستوى كل طالب في كل درس، ومتابعة لولي الأمر. ثانوية عامة، بكالوريا، SAT، ACT، EST، IGCSE.">
 <meta property="og:title" content="Examora">
-<meta property="og:description" content="امتحانات ومتابعة للمدرس والطالب وولي الأمر - Exams and progress for teachers, students and parents.">
-<meta name="theme-color" content="#f4f1ea">
-<script>/* THEMES: the look saved on this device (exm_theme), set before the first paint; the first visit gets the green paper look */
-(function () { var k = "editorial"; try { var s = localStorage.getItem("exm_theme"); if (/^(classic|editorial|navy|brown)$/.test(s || "")) k = s; } catch (e) { } document.documentElement.setAttribute("data-theme", k); })();</script>
+<meta property="og:description" content="منصة تعليمية متكاملة لكل المواد والمناهج - One teaching platform for every subject and curriculum.">
+<meta name="theme-color" content="#f4f7fb">
+<script>/* THEMES: the look saved on this device (exm_theme), set before the first paint; the first visit gets the glass look (P9.58) */
+(function () { var k = "glass"; try { var s = localStorage.getItem("exm_theme"); if (/^(classic|editorial|navy|brown|glass)$/.test(s || "")) k = s; } catch (e) { } document.documentElement.setAttribute("data-theme", k); })();</script>
 <link rel="preload" href="fonts/readex-pro-arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="img/icon-192.png">
 <link rel="apple-touch-icon" href="img/icon-192.png">
@@ -202,6 +202,26 @@ footer .brand{color:#f4f1ea}
 html[data-theme=classic]{--paper:#f4f7fe;--paper2:#e6edfb;--card:#ffffff;--ink:#0e1b3d;--mut:#4f5f82;--line:#dce5f8;--pine:#1650c8;--pine2:#0b2c8f;--mint:#19a7ff;--saff:#ffb000;--saff2:#ffe3a3;--green:#16803c;--amber:#b77f00;--red:#c62828}
 html[data-theme=navy]{--paper:#f2f4f8;--paper2:#e3e8f1;--card:#ffffff;--ink:#111a2e;--mut:#56617a;--line:#d9dfe9;--pine:#1b2f5c;--pine2:#121f3f;--mint:#8fb0ff;--saff:#c9a227;--saff2:#efe0a8;--r:14px}
 html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b1d14;--mut:#715f52;--line:#e2d2bc;--pine:#6b3f22;--pine2:#4e2c16;--mint:#e3a779;--saff:#d0733f;--saff2:#f2cfb4;--green:#3d7a37;--r:24px}
+/* P9.58 (owner 2026-11-10): glass = the default look, same colours as the apps (light only here): a soft colour wash behind, frosted cards / bar / tabs / forms */
+html[data-theme=glass]{--paper:#f4f7fb;--paper2:rgba(255,255,255,.5);--card:rgba(255,255,255,.68);--ink:#0f1b33;--mut:#4f5d75;--line:rgba(104,124,168,.26);--pine:#0277b5;--pine2:#075985;--mint:#7dd3fc;--saff:#14b8a6;--saff2:#bdeee7;--green:#0f7a55;--amber:#b77f00;--red:#b42318;--r:22px;--sh:0 1px 0 rgba(255,255,255,.7) inset,0 14px 40px rgba(31,56,110,.12)}
+html[data-theme=glass] body{background:#f4f7fb}
+html[data-theme=glass] body:before{opacity:1;background:radial-gradient(60vmax 60vmax at 8% 0%,rgba(186,230,253,.8),transparent 60%),radial-gradient(55vmax 55vmax at 100% 18%,rgba(221,214,254,.55),transparent 62%),radial-gradient(60vmax 60vmax at 60% 100%,rgba(204,251,241,.75),transparent 60%),linear-gradient(160deg,#f8fbff,#f1f6fb);background-size:auto}
+html[data-theme=glass] .top{background:rgba(248,251,255,.72);border-bottom-color:rgba(255,255,255,.8);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6)}
+html[data-theme=glass] .hero{border-bottom-color:transparent}html[data-theme=glass] .hero:before{display:none}
+html[data-theme=glass] .hero:after{background:radial-gradient(circle,rgba(20,184,166,.2),transparent 65%)}
+html[data-theme=glass] .card,html[data-theme=glass] .chip,html[data-theme=glass] details,html[data-theme=glass] #thmMenu{border-color:rgba(255,255,255,.85);box-shadow:var(--sh);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5)}
+html[data-theme=glass] #thmMenu{background:rgba(248,251,255,.92)}
+html[data-theme=glass] .btn{border-radius:16px}
+html[data-theme=glass] .btn.pri,html[data-theme=glass] .btn.blue{background:linear-gradient(180deg,color-mix(in srgb,var(--pine) 78%,#fff),var(--pine));color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 10px 26px rgba(2,119,181,.3)}
+html[data-theme=glass] .btn.pri:hover,html[data-theme=glass] .btn.blue:hover{color:#fff}html[data-theme=glass] .btn.pri:after,html[data-theme=glass] .btn.blue:after{background:var(--pine2)}
+html[data-theme=glass] .btn.ghost,html[data-theme=glass] .btn.line,html[data-theme=glass] .lang,html[data-theme=glass] .thm,html[data-theme=glass] .tab{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.9);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 2px 10px rgba(20,40,90,.08)}
+html[data-theme=glass] .tab{border-radius:99px}
+html[data-theme=glass] .tab[aria-selected="true"]{background:linear-gradient(180deg,color-mix(in srgb,var(--pine) 78%,#fff),var(--pine));color:#fff;border-color:transparent}
+html[data-theme=glass] .who .card:nth-child(2),html[data-theme=glass] .band{background:linear-gradient(150deg,#0277b5,#075985 60%,#0f766e);border-color:transparent}
+html[data-theme=glass] .who .card:nth-child(2) p{color:#e0f2fe}html[data-theme=glass] .band{color:#f8fbff}
+html[data-theme=glass] input,html[data-theme=glass] select,html[data-theme=glass] textarea{background:rgba(255,255,255,.7)}
+html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);box-shadow:0 34px 60px rgba(20,40,90,.25);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){html[data-theme=glass]{--card:rgba(255,255,255,.94)}}
 .thm{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;margin-inline-start:6px;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--ink) 30%,transparent);background:transparent;cursor:pointer}
 .thm i{width:20px;height:20px;border-radius:50%;background:conic-gradient(var(--pine) 0 50%,var(--saff) 50% 100%)}
 #thmMenu{position:fixed;z-index:200;min-width:230px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 40px rgba(0,0,0,.2);padding:8px}
@@ -365,18 +385,18 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
   'use strict';
   var T = {
     ar: {
-      title: 'Examora - امتحانات ومتابعة للمدرس والطالب وولي الأمر',
-      th_title: 'التصميم', th_classic: 'الكلاسيك (الأزرق)', th_editorial: 'الورقي (الأخضر)', th_navy: 'الكحلي', th_brown: 'البني',
+      title: 'Examora - منصة تعليمية متكاملة للمدرس والطالب وولي الأمر',
+      th_title: 'التصميم', th_classic: 'الكلاسيك (الأزرق)', th_editorial: 'الورقي (الأخضر)', th_navy: 'الكحلي', th_brown: 'البني', th_glass: 'الزجاجي',
       nHow: 'إزاي بيشتغل', nSee: 'شوف المنصة', nTeachers: 'للمدرسين', nFaq: 'أسئلة', login: 'تسجيل الدخول', teacherLogin: 'دخول المدرسين', otherLang: 'English',
-      heroChip: 'منصة امتحانات ومتابعة', heroH1a: 'اعرف مستوى كل طالب في كل درس', heroH1b: 'من أول امتحان',
-      heroLead: 'امتحانات بتتصحح لوحدها، مستوى كل مهارة بالألوان، امتحان جديد كل أسبوع، ومتابعة لولي الأمر. كل ده في مكان واحد للمدرس والطالب.',
+      heroChip: 'منصة واحدة لكل المواد والمناهج', heroH1a: 'كل شغل المدرس في منصة واحدة:', heroH1b: 'سنتر وأونلاين',
+      heroLead: 'امتحانات بتتصحح لوحدها، دروس أونلاين بالفيديو، حضور وحسابات، ومستوى كل طالب في كل درس بالألوان، ومتابعة لولي الأمر. لأي مادة وأي منهج: مصري، أمريكي أو دولي.',
       ctaStudent: 'أنا طالب: امتحان تحديد مستوى مجاني', ctaTeacher: 'أنا مدرس: جرّب المنصة', haveAccount: 'عندك حساب؟ سجّل دخول',
-      tick1: 'عربي وإنجليزي', tick2: 'موبايل وتابلت وكمبيوتر', tick3: 'إشعارات على الموبايل',
-      fl1: 'متمكن في 6 دروس', fl2: 'محتاج تدريب في قانون كيرشوف', mwT: 'مستوى أحمد في كل درس', mw1: 'قانون أوم', mw2: 'المقاومات', mw3: 'قانون كيرشوف',
+      tick1: 'كل المواد والمناهج', tick2: 'سنتر وأونلاين', tick3: 'عربي وإنجليزي', 
+      fl1: 'متمكن في 6 دروس', fl2: 'محتاج تدريب في الدرس الثالث', mwT: 'مستوى أحمد في كل درس', mw1: 'الدرس الأول', mw2: 'الدرس الثاني', mw3: 'الدرس الثالث',
       whoEye: 'لمين Examora؟', whoH: 'كل واحد بياخد اللي محتاجه', whoP: 'الطالب يعرف هو فين، وولي الأمر يطمن، والمدرس يوفر وقته.',
       w1h: 'للطالب', w1p: 'تعرف إنت فين بالظبط في كل درس، وتذاكر اللي ناقصك بس بدل ما تعيد الباب كله. وامتحان جديد كل أسبوع يقيس تقدمك.',
       w2h: 'لولي الأمر', w2p: 'رابط واحد يوريك مستوى ابنك وحضوره ودرجاته، وتقرير أسبوعي على الواتساب. من غير ما تسأل وتخمن.',
-      w3h: 'للمدرس', w3p: 'امتحانات وبنك أسئلة وتصحيح وحضور وفلوس ورسايل في مكان واحد. والمنصة بتطلعلك نقط ضعف كل طالب وكل مجموعة.',
+      w3h: 'للمدرس', w3p: 'امتحانات وبنك أسئلة وتصحيح وحضور وحسابات ورسايل ودروس أونلاين في مكان واحد. والمنصة بتطلعلك نقط ضعف كل طالب وكل مجموعة.',
       howEye: 'للطالب في 3 خطوات', howH: 'من امتحان تحديد المستوى لخطة كل أسبوع', howP: 'من غير ما تستنى حد: بياناتك وبس، والامتحان بيفتح على طول.',
       s1h: 'سجّل وادخل امتحان تحديد المستوى', s1p: 'اكتب اسمك ورقمك ورقم ولي أمرك واختار صفك. الامتحان بيفتحلك على طول ومجاني.',
       s2h: 'شوف مستواك في كل درس', s2p: 'النتيجة والتصحيح ومستواك في كل مهارة بيظهروا أول ما تخلص، بالألوان:',
@@ -384,7 +404,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       s3h: 'امتحان جديد كل أسبوع', s3p: 'لو حبيت تكمل: امتحان في كل مادة كل أسبوع على درس الأسبوع لحد آخر السنة، وولي أمرك بيتابع معاك.',
       seeEye: 'جوه المنصة', seeH: 'شوف الشاشات الحقيقية قبل ما تسجل', seeP: 'دي نفس الصفحات اللي الطالب والمدرس بيستخدموها.',
       demoNote: 'الأسماء والأرقام في الصور بيانات تجريبية للعرض.',
-      v_sLevel: 'الطالب: مستواه', v_sStats: 'الطالب: إحصائياته', v_sList: 'الطالب: امتحاناته', v_tStudents: 'المدرس: الطلاب', v_tStats: 'المدرس: الإحصائيات', v_tExams: 'المدرس: الامتحانات', v_tBank: 'المدرس: بنك الأسئلة',
+      v_sLevel: 'الطالب: مستواه', v_sStats: 'الطالب: إحصائياته', v_sList: 'الطالب: امتحاناته', v_tStudents: 'المدرس: الطلاب', v_tStats: 'المدرس: الإحصائيات', v_tExams: 'المدرس: الامتحانات', v_tBank: 'المدرس: بنك الأسئلة', v_tOnline: 'المدرس: الأونلاين', v_sOnline: 'الطالب: دروسه الأونلاين',
       vh_sLevel: 'مستواك في كل مهارة، والأضعف الأول', vp_sLevel: 'محسوب من آخر إجاباتك في كل مهارة. عارف تبدأ منين على طول.', vl_sLevel: 'نسبة لكل درس|ترتيب من الأضعف للأقوى|بيتحدث بعد كل امتحان',
       vh_sStats: 'متوسطك وحضورك وترتيبك', vp_sStats: 'رسوم بيانية بتوريك تقدمك مع الوقت، وحضورك وغيابك.', vl_sStats: 'متوسط الامتحانات|نسبة الحضور|درجاتك بمرور الوقت',
       vh_sList: 'كل امتحاناتك ودرجاتك', vp_sList: 'امتحانات بوقت، وبعدها التصحيح وشرح كل إجابة.', vl_sList: 'امتحانات بوقت محدد|تصحيح وشرح|تنزّل امتحاناتك المصححة PDF',
@@ -392,19 +412,25 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       vh_tStats: 'إحصائيات كل مجموعة وكل طالب', vp_tStats: 'الحضور بالأسبوع، ومتوسط كل امتحان، والمستحق من الفلوس.', vl_tStats: 'حضور وغياب|متوسطات الامتحانات|نقط ضعف كل درس',
       vh_tExams: 'امتحانات وواجبات في دقايق', vp_tExams: 'من بنكك أو من الكتاب أو بالذكاء الاصطناعي، وبعدها تتاح للمجموعة بميعاد فتح وقفل.', vl_tExams: 'امتحان من الدروس اللي تختارها|نموذج كامل للمنهج|امتحان من ملف PDF',
       vh_tBank: 'بنك أسئلة بيكبر معاك', vp_tBank: 'ارفع ورقة أو صورة والمنصة تقرأ الأسئلة، أو ولّد أسئلة جديدة، وراجعها قبل ما تستخدمها.', vl_tBank: 'قراءة PDF وصور|توليد بالذكاء الاصطناعي|مراجعة الأسئلة قبل الاستخدام',
+      vh_tOnline: 'دروسك الأونلاين من نفس المنصة', vp_tOnline: 'ارفع فيديوهات الدرس، حدد سعره أو خليه مجاني، واعمل باقات وأكواد شحن. والمنصة بتوريك مين اتفرج ومين متأخر.', vl_tOnline: 'درس بسعره أو باقة كاملة|أكواد شحن وتحويلات بتوافق عليها|متابعة المشاهدة والمتأخرين',
+      vh_sOnline: 'الطالب يتفرج، يحل الواجب، وبعدين يمتحن', vp_sOnline: 'الدروس بالترتيب: الفيديو الأول، وبعده الواجب، وبعده الامتحان. والفيديو بيكمل من مكان ما وقف.', vl_sOnline: 'يشتري درس أو باقة أو يشحن بكود|الواجب والامتحان بيفتحوا بعد المشاهدة|يكمل الفيديو من آخر نقطة',
       ftEye: 'للمدرسين والسناتر', ftH: 'كل شغلك في منصة واحدة', ftP: 'وفّر وقت التحضير والتصحيح والمتابعة، وركّز على الشرح.',
       f1h: 'امتحانات بالذكاء الاصطناعي', f1p: 'أسئلة جاهزة من بنكك أو من الكتاب في دقايق.',
       f2h: 'بنك أسئلة', f2p: 'ارفع ورقة أو كتاب والمنصة تقرأ الأسئلة.',
       f3h: 'تصحيح تلقائي', f3p: 'الاختيارات على طول، والمقالي بالذكاء الاصطناعي وإنت تراجع.',
       f4h: 'مذكرات تفاعلية', f4p: 'شرح كل درس بأمثلة وأسئلة، والطالب يحفظها PDF.',
       f5h: 'حصص وحضور QR', f5p: 'تطبيق سكانر للحضور وتنبيه للغياب المتكرر.',
-      f6h: 'فلوس الطلاب', f6p: 'مصاريف ومدفوعات ومتأخرات في مكان واحد.',
+      f6h: 'حسابات السنتر', f6p: 'الشهر بعدد الحصص، الدفع بمسح كارت الطالب، ومين عليه فلوس ومن إمتى.',
       f7h: 'رسايل وإعلانات', f7p: 'كلّم طالب أو مجموعة كاملة وابعت صور.',
       f8h: 'تقارير ولي الأمر', f8p: 'رابط ورسالة أسبوعية بمستوى الطالب.',
       f9h: 'إحصائيات ونقط ضعف', f9p: 'لكل طالب ولكل مجموعة ولكل درس.',
-      f10h: 'إشعارات الموبايل', f10p: 'امتحان جديد ونتيجة ورسالة من غير ما يفتح.',
+      f10h: 'إشعارات الموبايل', f10p: 'امتحان جديد أو نتيجة أو رسالة، وبضغطة تفتحلك صفحتها.',
       f11h: 'فريق ومساعدين', f11p: 'السكرتارية والمساعدين بصلاحيات على قد شغلهم.',
       f12h: 'امتحان أسبوعي جاهز', f12p: 'المنصة بتجهز امتحان الأسبوع وإنت توافق.',
+      f13h: 'دروس أونلاين بالفيديو', f13p: 'ارفع دروسك، والطالب يتفرج وبعدها الواجب والامتحان.',
+      f14h: 'باقات وأكواد شحن', f14p: 'بيع درس لوحده أو باقة، بكود أو بتحويل إنت توافق عليه.',
+      f15h: 'مراقبة الامتحان', f15p: 'تنبيه لو الطالب خرج من الامتحان، وفحص بالكاميرا لو حبيت.',
+      f16h: 'بوستات النتايج', f16p: 'صورة جاهزة بأوائل الامتحان أو نتيجة المجموعة تنزلها على صفحتك.',
       stEye: 'للطالب: مذاكرة بطعم اللعب', stH: 'بيذاكر وهو بيلعب، وبيتنافس مع زمايله', stP: 'المذاكرة مش امتحانات بس.',
       g1h: 'مسابقات وألعاب في المذكرة', g1p: 'من سيربح المليون، تحدي الـ 60 ثانية، وصح ولا غلط. بيلعب وهو بيراجع الدرس.',
       g2h: 'ترتيبه وسط زمايله', g2p: 'ترتيبه في مجموعته في الحضور والالتزام، والمنافسة بتخليه يدخل يمتحن ويعرف مستواه دايماً.',
@@ -435,21 +461,22 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       q4: 'بتدعموا مناهج إيه؟', a4: 'الثانوية العامة (عربي ولغات)، البكالوريا، SAT، ACT، EST، وIGCSE.',
       q5: 'أسئلتي ممكن حد ياخدها؟', a5: 'أسئلتك خاصة بيك ومحدش يشوفها إلا لو إنت اخترت تشاركها. والإجابات الصحيحة مش بتوصل للطالب قبل ميعاد النتيجة.',
       q6: 'المنصة بتشتغل على الموبايل؟', a6: 'أيوه، على الموبايل والتابلت والكمبيوتر، وتقدر تثبتها كتطبيق ويوصلك إشعار بالامتحان الجديد والنتيجة والرسايل.',
+      q7: 'ينفع أدّي دروس أونلاين من غير سنتر؟', a7: 'أيوه. تقدر تشتغل سنتر بس، أو أونلاين بس، أو الاتنين مع بعض. الطالب الأونلاين بيسجل من رابطك، يدفع بكود أو تحويل، ويتفرج على الدروس ويحل الواجب والامتحان من موبايله.',
       copy: 'Examora'
     },
     en: {
-      title: 'Examora - exams and progress for teachers, students and parents',
-      th_title: 'Look', th_classic: 'Classic (blue)', th_editorial: 'Paper (green)', th_navy: 'Navy', th_brown: 'Brown',
+      title: 'Examora - one teaching platform for teachers, students and parents',
+      th_title: 'Look', th_classic: 'Classic (blue)', th_editorial: 'Paper (green)', th_navy: 'Navy', th_brown: 'Brown', th_glass: 'Glass',
       nHow: 'How it works', nSee: 'See inside', nTeachers: 'For teachers', nFaq: 'FAQ', login: 'Sign in', teacherLogin: 'Teacher sign in', otherLang: 'العربية',
-      heroChip: 'Exams and progress platform', heroH1a: 'Know every student\'s level in every lesson', heroH1b: 'from the first exam',
-      heroLead: 'Exams that grade themselves, every skill colour-coded, a new exam every week, and parents kept in the loop. One place for teachers and students.',
+      heroChip: 'One platform for every subject and curriculum', heroH1a: 'All of a teacher\'s work in one place:', heroH1b: 'in class and online',
+      heroLead: 'Exams that grade themselves, online video lessons, attendance and fees, every student\'s level in every lesson, and parents kept in the loop. Any subject, any curriculum: Egyptian, American or international.',
       ctaStudent: 'I\'m a student: free placement test', ctaTeacher: 'I\'m a teacher: try Examora', haveAccount: 'Have an account? Sign in',
-      tick1: 'Arabic and English', tick2: 'Phone, tablet and computer', tick3: 'Phone notifications',
+      tick1: 'Every subject and curriculum', tick2: 'In class and online', tick3: 'Arabic and English',
       fl1: 'Mastered 6 skills', fl2: 'Needs practice: Linear equations', mwT: 'Sara\'s level in every lesson', mw1: 'Linear functions', mw2: 'Ratios', mw3: 'Linear equations',
       whoEye: 'Who is Examora for?', whoH: 'Everyone gets what they need', whoP: 'Students know where they stand, parents stop guessing, teachers save hours.',
       w1h: 'Students', w1p: 'See exactly where you stand in every lesson and study only what you are missing. A new exam every week measures your progress.',
       w2h: 'Parents', w2p: 'One link shows your child\'s level, attendance and grades, plus a weekly report on WhatsApp.',
-      w3h: 'Teachers', w3p: 'Exams, question bank, grading, attendance, fees and messages in one place, with the weak points of every student and group.',
+      w3h: 'Teachers', w3p: 'Exams, question bank, grading, attendance, fees, messages and online lessons in one place, with the weak points of every student and group.',
       howEye: 'For students in 3 steps', howH: 'From a placement test to a plan every week', howP: 'No waiting: just your details, and the exam opens right away.',
       s1h: 'Sign up and take the placement test', s1p: 'Your name, your number, your parent\'s number and your grade. The test opens right away, free.',
       s2h: 'See your level in every lesson', s2p: 'Your score, the corrections and your level in every skill show as soon as you finish:',
@@ -457,7 +484,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       s3h: 'A new exam every week', s3p: 'If you go on: an exam in every subject every week on that week\'s lesson until the end of the year, and your parent follows along.',
       seeEye: 'Inside Examora', seeH: 'See the real screens before you sign up', seeP: 'These are the same pages students and teachers use.',
       demoNote: 'Names and numbers in the pictures are demo data.',
-      v_sLevel: 'Student: my level', v_sStats: 'Student: statistics', v_sList: 'Student: exams', v_tStudents: 'Teacher: students', v_tStats: 'Teacher: statistics', v_tExams: 'Teacher: exams', v_tBank: 'Teacher: question bank',
+      v_sLevel: 'Student: my level', v_sStats: 'Student: statistics', v_sList: 'Student: exams', v_tStudents: 'Teacher: students', v_tStats: 'Teacher: statistics', v_tExams: 'Teacher: exams', v_tBank: 'Teacher: question bank', v_tOnline: 'Teacher: online', v_sOnline: 'Student: online lessons',
       vh_sLevel: 'Your level in every skill, weakest first', vp_sLevel: 'Built from your latest answers in each skill, so you know where to start.', vl_sLevel: 'A percentage per lesson|Weakest to strongest|Updated after every exam',
       vh_sStats: 'Your average, attendance and rank', vp_sStats: 'Charts of your progress over time, and your attendance.', vl_sStats: 'Exam average|Attendance rate|Scores over time',
       vh_sList: 'All your exams and scores', vp_sList: 'Timed exams, then the corrections with an explanation for every answer.', vl_sList: 'Timed exams|Corrections and explanations|Download your corrected exams as PDF',
@@ -465,19 +492,25 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       vh_tStats: 'Statistics for every group and student', vp_tStats: 'Weekly attendance, the average of each exam and the fees due.', vl_tStats: 'Attendance|Exam averages|Weak points per lesson',
       vh_tExams: 'Exams and homework in minutes', vp_tExams: 'From your bank, from the book or with AI, then open it for a group with an opening and closing time.', vl_tExams: 'An exam from the lessons you pick|A full official format|An exam from a PDF file',
       vh_tBank: 'A question bank that grows with you', vp_tBank: 'Upload a paper or a photo and Examora reads the questions, or generate new ones, then review them before use.', vl_tBank: 'Reads PDFs and photos|AI generation|Review before use',
+      vh_tOnline: 'Your online lessons, on the same platform', vp_tOnline: 'Add the lesson videos, set a price or make it free, and sell packages and top-up codes. Examora shows who watched and who is behind.', vl_tOnline: 'One lesson or a full package|Codes and transfers you approve|Watch tracking and late students',
+      vh_sOnline: 'Watch, do the homework, then the exam', vp_sOnline: 'Lessons open in order: the video first, then its homework, then its exam. The video resumes where the student stopped.', vl_sOnline: 'Buy a lesson, a package or use a code|Homework and exam open after watching|Resume from the last point',
       ftEye: 'For teachers and centres', ftH: 'Your whole workflow in one platform', ftP: 'Save time on preparing, grading and following up, and focus on teaching.',
       f1h: 'AI exams', f1p: 'Ready questions from your bank or the book in minutes.',
       f2h: 'Question bank', f2p: 'Upload a paper or a book and Examora reads the questions.',
       f3h: 'Automatic grading', f3p: 'Multiple choice at once; written answers by AI, reviewed by you.',
       f4h: 'Interactive study memos', f4p: 'Every lesson with examples and questions; students save it as PDF.',
       f5h: 'Classes and QR attendance', f5p: 'A scanner app for attendance and alerts for repeated absence.',
-      f6h: 'Student fees', f6p: 'Charges, payments and what is owed in one place.',
+      f6h: 'Centre fees', f6p: 'Months counted by classes, payment by scanning the student card, and who owes since when.',
       f7h: 'Messages and announcements', f7p: 'Talk to a student or a whole group, with photos.',
       f8h: 'Parent reports', f8p: 'A link and a weekly message with the student\'s level.',
       f9h: 'Statistics and weak points', f9p: 'For every student, every group and every lesson.',
-      f10h: 'Phone notifications', f10p: 'New exam, result or message without opening the site.',
+      f10h: 'Phone notifications', f10p: 'New exam, result or message: one tap opens its page.',
       f11h: 'Team and assistants', f11p: 'Secretaries and assistants with just the permissions they need.',
       f12h: 'A ready weekly exam', f12p: 'Examora prepares the week\'s exam and you approve it.',
+      f13h: 'Online video lessons', f13p: 'Add your lessons; students watch, then do the homework and the exam.',
+      f14h: 'Packages and codes', f14p: 'Sell one lesson or a package, by code or a transfer you approve.',
+      f15h: 'Exam guard', f15p: 'A warning when a student leaves the exam, and an optional camera check.',
+      f16h: 'Result posts', f16p: 'A ready image of the top students or the group result for your page.',
       stEye: 'For students: studying that feels like playing', stH: 'They learn while they play, and compete with classmates', stP: 'Studying is more than exams.',
       g1h: 'Games in the study memo', g1p: 'Who Wants to Be a Millionaire, the 60-second challenge and true or false, while reviewing the lesson.',
       g2h: 'Their rank among classmates', g2p: 'Their rank in their group, so they keep coming back to take exams and check their level.',
@@ -508,6 +541,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
       q4: 'Which curricula do you support?', a4: 'Egyptian Thanaweya Amma (Arabic and languages), the Baccalaureate, SAT, ACT, EST and IGCSE.',
       q5: 'Can anyone take my questions?', a5: 'Your questions are yours: nobody sees them unless you choose to share them. Correct answers never reach a student before the results time.',
       q6: 'Does it work on phones?', a6: 'Yes: phones, tablets and computers. Install it as an app and get notified of new exams, results and messages.',
+      q7: 'Can I teach online only, without a centre?', a7: 'Yes. Work in class only, online only, or both. An online student signs up from your link, pays with a code or a transfer, then watches the lessons and does the homework and the exam on the phone.',
       copy: 'Examora'
     }
   };
@@ -521,10 +555,11 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     f6: 'M3 7h18v10H3z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4', f7: 'M4 5h16v11H9l-5 4z', f8: 'M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M5 20a7 7 0 0 1 14 0',
     f9: 'M4 20V10 M10 20V4 M16 20v-8 M22 20H2', f10: 'M6 16V11a6 6 0 0 1 12 0v5l2 2H4z M10 21h4',
     f11: 'M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6 M2 20a6 6 0 0 1 12 0 M14 20h8a6 6 0 0 0-6-5', f12: 'M4 6h16v14H4z M4 11h16 M9 3v5 M15 3v5',
+    f13: 'M3 5h18v12H3z M10 8.5l5 2.5-5 2.5z M8 21h8', f14: 'M3 8h18v8H3z M7 8v8 M11 11h6 M11 13h4', f15: 'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4', f16: 'M4 4h16v16H4z M4 15l4-4 4 4 3-3 5 5 M9 8h0',
     g1: 'M8 21h8 M12 17v4 M7 4h10v5a5 5 0 0 1-10 0z M7 6H4a3 3 0 0 0 3 4 M17 6h3a3 3 0 0 1-3 4', g2: 'M6 20V10 M12 20V4 M18 20v-6',
     g3: 'M4 5h16v14H4z M10 9l5 3-5 3z', g4: 'M12 3a9 9 0 1 0 9 9 M12 8v5 M12 16h0'
   };
-  var VIEWS = [['sLevel', 's', 'tabLevel'], ['sStats', 's', 'tabStats'], ['sList', 's', 'tabList'], ['tStudents', 't', 'students'], ['tStats', 't', 'tabStats'], ['tExams', 't', 'tabExams'], ['tBank', 't', 'tabBank']];
+  var VIEWS = [['sLevel', 's', 'tabLevel'], ['sStats', 's', 'tabStats'], ['sList', 's', 'tabList'], ['tStudents', 't', 'students'], ['tStats', 't', 'tabStats'], ['tExams', 't', 'tabExams'], ['tBank', 't', 'tabBank'], ['tOnline', 't', 'tabOnline'], ['sOnline', 's', 'tabOnline']];
   var LANG = 'ar', SITE = null, VIEW = 'sLevel', SHOWN = { s: 0, t: 0 };
   function $(id) { return document.getElementById(id); }
   function t(k) { return (T[LANG] && T[LANG][k]) || T.en[k] || ''; }
@@ -552,7 +587,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
     $('langBtn').textContent = t('otherLang'); $('thmBtn').setAttribute('aria-label', t('th_title')); $('thmBtn').title = t('th_title'); thmClose();
     ['loginTop', 'loginHero', 'loginFoot'].forEach(function (id) { $(id).setAttribute('href', withLang(loginUrl())); });
     $('teacherFoot').setAttribute('href', withLang(teacherUrl()));
-    $('heroDesk').setAttribute('src', img('t', 'tabStats')); $('heroPhone').setAttribute('src', img('s', 'tabLevel'));
+    $('heroDesk').setAttribute('src', img('t', 'tabStats')); $('heroPhone').setAttribute('src', img('s', 'tabOnline'));   // P9.58: the online lessons screen (general lesson names)
     $('copy').textContent = '© ' + new Date().getFullYear() + ' ' + t('copy');
     renderTabs(); renderView(); renderFeats(); renderFaq(); fillForms(); wa(); if (IO) reveal();
   }
@@ -560,7 +595,7 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
   $('langBtn').addEventListener('click', function () { setLang(LANG === 'ar' ? 'en' : 'ar'); });
 
   // ---------------- looks (themes) ----------------
-  var THM = ['classic', 'editorial', 'navy', 'brown'], THM_DOTS = { classic: ['#1650c8', '#ffb000'], editorial: ['#0f4f47', '#e3a13a'], navy: ['#1b2f5c', '#c9a227'], brown: ['#6b3f22', '#d0733f'] }, thmMenu = null;
+  var THM = ['glass', 'classic', 'editorial', 'navy', 'brown'], THM_DOTS = { glass: ['#0277b5', '#14b8a6'], classic: ['#1650c8', '#ffb000'], editorial: ['#0f4f47', '#e3a13a'], navy: ['#1b2f5c', '#c9a227'], brown: ['#6b3f22', '#d0733f'] }, thmMenu = null;
   function thmName(k) { return t('th_' + k); }
   function thmClose() { if (thmMenu) { thmMenu.parentNode.removeChild(thmMenu); thmMenu = null; } }
   function thmSet(k) { document.documentElement.setAttribute('data-theme', k); try { localStorage.setItem('exm_theme', k); } catch (e) { } thmClose(); }
@@ -600,13 +635,13 @@ html[data-theme=brown]{--paper:#f6efe5;--paper2:#ecdfcc;--card:#fffaf3;--ink:#2b
   }
   function renderFeats() {
     var box = $('feats'); box.textContent = '';
-    for (var i = 1; i <= 12; i++) box.appendChild(el('div', { 'class': 'card' }, [el('div', { 'class': 'ic' }, [icon('f' + i)]), el('h3', { text: t('f' + i + 'h') }), el('p', { text: t('f' + i + 'p') })]));
+    for (var i = 1; i <= 16; i++) box.appendChild(el('div', { 'class': 'card' }, [el('div', { 'class': 'ic' }, [icon('f' + i)]), el('h3', { text: t('f' + i + 'h') }), el('p', { text: t('f' + i + 'p') })]));
     box = $('funs'); box.textContent = '';
     for (i = 1; i <= 4; i++) box.appendChild(el('div', { 'class': 'card' }, [el('div', { 'class': 'ic' }, [icon('g' + i)]), el('h3', { text: t('g' + i + 'h') }), el('p', { text: t('g' + i + 'p') })]));
   }
   function renderFaq() {
     var box = $('faqs'); box.textContent = '';
-    for (var i = 1; i <= 6; i++) box.appendChild(el('details', {}, [el('summary', { text: t('q' + i) }), el('p', { text: t('a' + i) })]));
+    for (var i = 1; i <= 7; i++) box.appendChild(el('details', {}, [el('summary', { text: t('q' + i) }), el('p', { text: t('a' + i) })]));
   }
   function wa() {
     var n = SITE && SITE.whatsapp ? String(SITE.whatsapp).replace(/\D/g, '') : '', a = $('waFoot');
