@@ -93,6 +93,30 @@ a{color:var(--pine)}
 @keyframes grow{to{transform:scaleX(1)}}
 .mw .r b{font-weight:700;text-align:end}
 @media (max-width:940px){.hero .wrap{grid-template-columns:1fr;padding-top:40px}.stage{min-height:0;height:min(104vw,520px)}}
+/* P9.65 hero in 3D (owner 2026-11-11): the phones stand in perspective and the curricula orbit around them. CSS 3D only (no library, nothing extra to download); drag to turn it. */
+.stage{perspective:1400px;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none;--D0:clamp(300px,38vw,470px)}
+.stage .phone{--ry:14deg;animation:bob3 7s ease-in-out infinite}
+[dir=ltr] .stage .phone{--ry:-14deg}
+.stage .phone.back,[dir=ltr] .stage .phone.back{animation:none;transform:rotateY(calc(var(--ry) * -1)) rotate(-3deg)}
+[dir=ltr] .stage .phone.back{transform:rotateY(calc(var(--ry) * -1)) rotate(3deg)}
+.stage .phone img{-webkit-user-drag:none;pointer-events:none}
+@keyframes bob3{0%,100%{transform:rotateY(calc(var(--ry) + var(--px,0deg))) rotateX(calc(3deg + var(--py,0deg)))}50%{transform:rotateY(calc(var(--ry) + var(--px,0deg))) rotateX(calc(3deg + var(--py,0deg))) translateY(-12px)}}
+.stage .mw{z-index:4;bottom:0}
+html[data-theme=glass] .stage .mw{background:rgba(255,255,255,.93)}
+.orb{position:absolute;inset:0;pointer-events:none;perspective:1200px;perspective-origin:50% 46%;direction:ltr}
+.orb.b{z-index:0}.orb.f{z-index:3;clip-path:inset(46% -80px -40px -80px)}
+.orb-p{--D:var(--D0);position:absolute;left:50%;top:46%;width:var(--D);height:var(--D);margin:calc(var(--D) / -2) 0 0 calc(var(--D) / -2);border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--pine) 50%,transparent);transform:rotateX(68deg);transform-style:preserve-3d}
+.orb-p.in{--D:calc(var(--D0) * .6);border-style:solid;border-color:color-mix(in srgb,var(--saff) 55%,transparent)}
+.orb-s{position:absolute;inset:0;transform-style:preserve-3d;animation:orbS 54s linear infinite}
+.orb-s.rev{animation-direction:reverse}
+.orb-c{position:absolute;left:50%;top:50%;transform-style:preserve-3d;transform:rotate(var(--a)) translateX(calc(var(--D) / 2)) rotate(calc(var(--a) * -1))}
+.orb-c b{display:block;transform-origin:0 0;transform-style:preserve-3d;transform:rotateX(-68deg);animation:orbC 54s linear infinite}
+.orb-c i{display:block;font-style:normal;white-space:nowrap;transform:translate(-50%,-50%);padding:7px 15px;border-radius:99px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 24px rgba(21,32,30,.16);font-weight:600;font-size:14px;color:var(--ink)}
+.orb-c u{display:block;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--saff);box-shadow:0 0 0 5px color-mix(in srgb,var(--saff) 28%,transparent)}
+html[data-theme=glass] .orb-c i{background:rgba(255,255,255,.86);border-color:rgba(255,255,255,.95);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 3px 0 rgba(86,108,150,.22),0 12px 24px rgba(20,40,90,.16)}
+@keyframes orbS{to{transform:rotateZ(360deg)}}
+@keyframes orbC{from{transform:rotateZ(0deg) rotateX(-68deg)}to{transform:rotateZ(-360deg) rotateX(-68deg)}}
+@media (max-width:940px){.stage{--D0:min(70vw,420px)}.orb-c i{font-size:13px;padding:6px 12px}}
 /* curricula band */
 .marq{direction:ltr;overflow:hidden;border-bottom:1px solid var(--line);background:var(--pine);color:var(--paper);padding:14px 0;white-space:nowrap}
 .marq .trk{display:inline-flex;gap:46px;padding-inline-end:46px;animation:marq 32s linear infinite;font-weight:600;font-size:18px;letter-spacing:.02em}
@@ -256,8 +280,6 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
     <div class="stage" aria-hidden="true">
       <div class="phone back"><img id="heroDesk" alt="" width="390" height="844"></div>
       <div class="phone"><img id="heroPhone" alt="" width="390" height="844"></div>
-      <div class="float f1"><b style="background:var(--green)"></b><span data-t="fl1"></span></div>
-      <div class="float f2"><b style="background:var(--red)"></b><span data-t="fl2"></span></div>
       <div class="mw"><h4 data-t="mwT"></h4>
         <div class="r"><span data-t="mw1"></span><b>92%</b><i style="--w:92%;--c:var(--green);--d:.6s"></i></div>
         <div class="r"><span data-t="mw2"></span><b>71%</b><i style="--w:71%;--c:var(--amber);--d:.8s"></i></div>
@@ -388,7 +410,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
       title: 'Examora - منصة تعليمية متكاملة للمدرس والطالب وولي الأمر',
       th_title: 'التصميم', th_classic: 'الكلاسيك (الأزرق)', th_editorial: 'الورقي (الأخضر)', th_navy: 'الكحلي', th_brown: 'البني', th_glass: 'الزجاجي',
       nHow: 'إزاي بيشتغل', nSee: 'شوف المنصة', nTeachers: 'للمدرسين', nFaq: 'أسئلة', login: 'تسجيل الدخول', teacherLogin: 'دخول المدرسين', otherLang: 'English',
-      heroChip: 'منصة واحدة لكل المواد والمناهج', heroH1a: 'كل شغل المدرس في منصة واحدة:', heroH1b: 'سنتر وأونلاين',
+      ob1: 'الثانوية العامة', ob2: 'SAT', ob3: 'البكالوريا', ob4: 'IGCSE', ob5: 'ACT', ob6: 'EST', heroChip: 'منصة واحدة لكل المواد والمناهج', heroH1a: 'كل شغل المدرس في منصة واحدة:', heroH1b: 'سنتر وأونلاين',
       heroLead: 'امتحانات بتتصحح لوحدها، دروس أونلاين بالفيديو، حضور وحسابات، ومستوى كل طالب في كل درس بالألوان، ومتابعة لولي الأمر. لأي مادة وأي منهج: مصري، أمريكي أو دولي.',
       ctaStudent: 'أنا طالب: امتحان تحديد مستوى مجاني', ctaTeacher: 'أنا مدرس: جرّب المنصة', haveAccount: 'عندك حساب؟ سجّل دخول',
       tick1: 'كل المواد والمناهج', tick2: 'سنتر وأونلاين', tick3: 'عربي وإنجليزي', 
@@ -468,7 +490,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
       title: 'Examora - one teaching platform for teachers, students and parents',
       th_title: 'Look', th_classic: 'Classic (blue)', th_editorial: 'Paper (green)', th_navy: 'Navy', th_brown: 'Brown', th_glass: 'Glass',
       nHow: 'How it works', nSee: 'See inside', nTeachers: 'For teachers', nFaq: 'FAQ', login: 'Sign in', teacherLogin: 'Teacher sign in', otherLang: 'العربية',
-      heroChip: 'One platform for every subject and curriculum', heroH1a: 'All of a teacher\'s work in one place:', heroH1b: 'in class and online',
+      ob1: 'Thanaweya Amma', ob2: 'SAT', ob3: 'Baccalaureate', ob4: 'IGCSE', ob5: 'ACT', ob6: 'EST', heroChip: 'One platform for every subject and curriculum', heroH1a: 'All of a teacher\'s work in one place:', heroH1b: 'in class and online',
       heroLead: 'Exams that grade themselves, online video lessons, attendance and fees, every student\'s level in every lesson, and parents kept in the loop. Any subject, any curriculum: Egyptian, American or international.',
       ctaStudent: 'I\'m a student: free placement test', ctaTeacher: 'I\'m a teacher: try Examora', haveAccount: 'Have an account? Sign in',
       tick1: 'Every subject and curriculum', tick2: 'In class and online', tick3: 'Arabic and English',
@@ -581,7 +603,33 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
   function img(kind, key) { return 'img/' + LANG + '_' + kind + '_' + key + '.jpg'; }
 
   // ---------------- language ----------------
+  /** P9.65: the hero orbit. Two copies of the same rings: one behind the phones, one in front showing only the near half, so a name passes behind the phones and comes back in front. */
+  function orbBuild() {
+    var st = document.querySelector('.stage'); if (!st || st.querySelector('.orb')) return;
+    function mk(cls, kids) { var d = document.createElement(cls === 'orb-c' ? 'span' : 'div'); d.className = cls; (kids || []).forEach(function (c) { d.appendChild(c); }); return d; }
+    function at(n, deg) { n.style.setProperty('--a', deg + 'deg'); return n; }
+    ['f', 'b'].forEach(function (k) {
+      var names = [];
+      for (var i = 0; i < 6; i++) { var lab = document.createElement('i'), bb = document.createElement('b'); lab.setAttribute('data-t', 'ob' + (i + 1)); bb.appendChild(lab); names.push(at(mk('orb-c', [bb]), i * 60 + 25)); }
+      var dots = [40, 220].map(function (deg) { return at(mk('orb-c', [document.createElement('u')]), deg); });
+      st.insertBefore(mk('orb ' + k, [mk('orb-p in', [mk('orb-s rev', dots)]), mk('orb-p', [mk('orb-s', names)])]), st.firstChild);
+    });
+    var x0 = null, DUR = 54000;
+    function turn(d) { var ns = st.querySelectorAll('.orb-s,.orb-c b'); for (var i = 0; i < ns.length; i++) { var as = ns[i].getAnimations ? ns[i].getAnimations() : []; for (var j = 0; j < as.length; j++) { try { as[j].currentTime = (((Number(as[j].currentTime) || 0) - d * 36) % DUR + DUR) % DUR; } catch (e) { } } } }
+    st.addEventListener('pointerdown', function (e) { x0 = e.clientX; st.style.cursor = 'grabbing'; });
+    window.addEventListener('pointermove', function (e) { if (x0 === null) return; var d = e.clientX - x0; x0 = e.clientX; if (d) turn(d); });
+    ['pointerup', 'pointercancel'].forEach(function (ev) { window.addEventListener(ev, function () { x0 = null; st.style.cursor = ''; }); });
+    st.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    try {   // the phones lean a little toward the mouse (computers only)
+      if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var hero = document.querySelector('.hero'), raf = 0;
+        hero.addEventListener('pointermove', function (e) { if (raf) return; raf = requestAnimationFrame(function () { raf = 0; var r = hero.getBoundingClientRect(); st.style.setProperty('--px', (((e.clientX - r.left) / r.width - .5) * 10).toFixed(2) + 'deg'); st.style.setProperty('--py', (((e.clientY - r.top) / r.height - .5) * -8).toFixed(2) + 'deg'); }); });
+        hero.addEventListener('pointerleave', function () { st.style.removeProperty('--px'); st.style.removeProperty('--py'); });
+      }
+    } catch (e) { }
+  }
   function apply() {
+    orbBuild();
     var h = document.documentElement; h.setAttribute('lang', LANG); h.setAttribute('dir', LANG === 'ar' ? 'rtl' : 'ltr'); document.title = t('title');
     var n = document.querySelectorAll('[data-t]'); for (var i = 0; i < n.length; i++) n[i].textContent = t(n[i].getAttribute('data-t'));
     $('langBtn').textContent = t('otherLang'); $('thmBtn').setAttribute('aria-label', t('th_title')); $('thmBtn').title = t('th_title'); thmClose();
