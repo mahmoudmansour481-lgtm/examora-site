@@ -355,6 +355,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
           <label for="s_name" data-t="fName"></label><input id="s_name" autocomplete="name" maxlength="100" required>
           <label for="s_phone" data-t="fPhone"></label><input id="s_phone" inputmode="tel" autocomplete="tel" dir="ltr" maxlength="20" required>
           <div class="two"><div><label for="s_cur" data-t="fCur"></label><select id="s_cur" required></select></div><div><label for="s_grade" data-t="fGrade"></label><select id="s_grade" required></select></div></div>
+          <div id="s_trackBox" class="hide"><label for="s_track" data-t="fTrack"></label><select id="s_track"></select></div>
           <div class="hpw" aria-hidden="true"><label for="s_web">web</label><input id="s_web" tabindex="-1" autocomplete="off"></div>
           <button class="btn blue" type="submit" id="s_go" data-t="fsGo"></button>
           <p class="mini" data-t="fsMini"></p>
@@ -474,7 +475,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
       e_FULL: 'مش قادرين نضيف طلاب دلوقتي. كلمنا على واتساب.', e_NAME_REQUIRED: 'اكتب الاسم.', e_NAME_TOO_LONG: 'الاسم طويل قوي.',
       e_PHONE_INVALID: 'رقم الموبايل مش مظبوط. اكتبه زي 01012345678.', e_PHONE_REQUIRED: 'اكتب رقم الموبايل.', e_PARENT_PHONE_REQUIRED: 'اكتب رقم ولي الأمر.',
       e_PHONES_SAME: 'رقمك ورقم ولي الأمر لازم يكونوا مختلفين.', e_EMAIL_INVALID: 'الإيميل مش مظبوط.', e_CURRICULUM_INVALID: 'اختار المنهج.', e_SUBJECT_REQUIRED: 'اختار المادة.',
-      e_GRADE_REQUIRED: 'اختار الصف.', e_BUSY: 'المنصة مشغولة. جرّب تاني بعد دقيقة.', e_POW_REQUIRED: 'متصفحك قديم أو الصفحة مفتوحة من بدري. حدّث الصفحة وجرّب تاني.', e_NETWORK: 'مفيش اتصال بالمنصة. اتأكد من النت وجرّب تاني.', e_ERROR: 'حصلت مشكلة. جرّب تاني.',
+      e_GRADE_REQUIRED: 'اختار الصف.', e_TRACK_REQUIRED: 'اختار المسار والتخصص بتاعك.', fTrack: 'المسار والتخصص', e_BUSY: 'المنصة مشغولة. جرّب تاني بعد دقيقة.', e_POW_REQUIRED: 'متصفحك قديم أو الصفحة مفتوحة من بدري. حدّث الصفحة وجرّب تاني.', e_NETWORK: 'مفيش اتصال بالمنصة. اتأكد من النت وجرّب تاني.', e_ERROR: 'حصلت مشكلة. جرّب تاني.',
       e_FIELD_TOO_LONG: 'في خانة طويلة قوي.',
       faqEye: 'أسئلة', faqH: 'أسئلة بتتسأل كتير', waFoot: 'كلمنا على واتساب', waHello: 'السلام عليكم، عايز أعرف أكتر عن Examora.',
       q1: 'امتحان تحديد المستوى بفلوس؟', a1: 'لأ، مجاني. بعده لو حابب تكمل في الامتحانات الأسبوعية كلمنا على واتساب ونعرفك التفاصيل.',
@@ -554,7 +555,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
       e_FULL: 'We cannot add students right now. Message us on WhatsApp.', e_NAME_REQUIRED: 'Write your name.', e_NAME_TOO_LONG: 'The name is too long.',
       e_PHONE_INVALID: 'The mobile number is not valid.', e_PHONE_REQUIRED: 'Write the mobile number.', e_PARENT_PHONE_REQUIRED: 'Write the parent\'s number.',
       e_PHONES_SAME: 'Your number and your parent\'s number must be different.', e_EMAIL_INVALID: 'The email is not valid.', e_CURRICULUM_INVALID: 'Choose the curriculum.', e_SUBJECT_REQUIRED: 'Choose the subject.',
-      e_GRADE_REQUIRED: 'Choose the grade.', e_BUSY: 'Examora is busy. Please try again in a minute.', e_POW_REQUIRED: 'Your browser is too old or the page was open too long. Refresh the page and try again.', e_NETWORK: 'Cannot reach Examora. Check your internet and try again.', e_ERROR: 'Something went wrong. Please try again.',
+      e_GRADE_REQUIRED: 'Choose the grade.', e_TRACK_REQUIRED: 'Choose your track and specialisation.', fTrack: 'Track and specialisation', e_BUSY: 'Examora is busy. Please try again in a minute.', e_POW_REQUIRED: 'Your browser is too old or the page was open too long. Refresh the page and try again.', e_NETWORK: 'Cannot reach Examora. Check your internet and try again.', e_ERROR: 'Something went wrong. Please try again.',
       e_FIELD_TOO_LONG: 'One of the fields is too long.',
       faqEye: 'FAQ', faqH: 'Questions people ask', waFoot: 'Message us on WhatsApp', waHello: 'Hello, I would like to know more about Examora.',
       q1: 'Is the placement test free?', a1: 'Yes. After it, if you want to go on with the weekly exams, message us on WhatsApp for the details.',
@@ -725,6 +726,15 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
     if (c && c.grades.length === 1) g.value = c.grades[0]; else if (cur) g.value = cur;
     var none = !!(c && c.grades.length && c.grades.every(function (x) { return !x; }));   // owner 2026-10-26: no school year to choose (the SAT is one test for every grade): the field is hidden
     g.required = !none; g.parentNode.classList.toggle('hide', none);
+    fillTracks();
+  }
+  function fillTracks() {   // P9.90: 2nd year Baccalaureate -> the student picks his track (it decides his group and his exams)
+    var c = (SITE ? SITE.students : []).filter(function (x) { return x.code === $('s_cur').value; })[0], tr = $('s_track'), cur = tr.value;
+    var on = !!(c && c.tracks && c.tracks.length && $('s_grade').value === c.trackGrade);
+    tr.textContent = ''; tr.appendChild(opt('', t('choose')));
+    if (on) c.tracks.forEach(function (x) { tr.appendChild(opt(x.code, LANG === 'en' ? x.en : x.ar)); });
+    if (on && cur) tr.value = cur;
+    tr.required = on; $('s_trackBox').classList.toggle('hide', !on);
   }
   function fillSubjects() {
     var c = (SITE ? SITE.teachers : []).filter(function (x) { return x.code === $('t_cur').value; })[0], s = $('t_sub'), cur = s.value; s.textContent = '';
@@ -732,6 +742,7 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
     if (cur) s.value = cur;
   }
   $('s_cur').addEventListener('change', fillGrades);
+  $('s_grade').addEventListener('change', fillTracks);
   $('t_cur').addEventListener('change', fillSubjects);
   $('t_lang').addEventListener('change', function () { $('t_lang').setAttribute('data-touched', '1'); });
 
@@ -741,8 +752,9 @@ html[data-theme=glass] .phone{background:rgba(255,255,255,.55);border:1px solid 
     if (!$('s_phone').value.trim()) { say('s_msg', t('e_PHONE_REQUIRED'), 'err'); return; }
     if (!$('s_cur').value) { say('s_msg', t('e_CURRICULUM_INVALID'), 'err'); return; }
     if (!$('s_grade').value && $('s_grade').options.length > 1 && !$('s_grade').parentNode.classList.contains('hide')) { say('s_msg', t('e_GRADE_REQUIRED'), 'err'); return; }
+    if (!$('s_trackBox').classList.contains('hide') && !$('s_track').value) { say('s_msg', t('e_TRACK_REQUIRED'), 'err'); return; }
     b.disabled = true; say('s_msg', t('sending'));
-    withPow({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, curriculum: $('s_cur').value, grade: $('s_grade').value,
+    withPow({ action: 'studentTrial', name: $('s_name').value, phone: $('s_phone').value, curriculum: $('s_cur').value, grade: $('s_grade').value, track: $('s_track').value,
       lang: LANG, hp: $('s_web').value, ms: Date.now() - SHOWN.s }, function (r) {
       if (r.ok && r.data && safeLink(r.data.open)) { say('s_msg', t('opening'), 'ok'); window.location.href = r.data.open; return; }
       b.disabled = false; say('s_msg', errMsg(r), 'err');
